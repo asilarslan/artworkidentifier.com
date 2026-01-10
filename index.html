@@ -1,10 +1,701 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Artwork Identifier</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artwork Identifier - AI-Powered Art Guide | Identify Artwork with AI</title>
+    <meta name="description" content="Unlock the mystery behind any piece of art with Artwork Identifier AI. Snap a photo of any artwork and instantly identify the artist, title, and background story. Free iOS & Android app download.">
+    <meta name="keywords" content="artwork identifier, art recognition, AI art identification, identify artwork, painting identifier, art scanner, artist identification, art history app, artwork finder, art app, museum app, gallery app">
+    <meta name="author" content="Asil Arslan">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://artworkidentifier.com">
+    <meta property="og:title" content="Artwork Identifier - AI-Powered Art Guide">
+    <meta property="og:description" content="Unlock the mystery behind any piece of art with AI. Snap a photo and instantly identify the artist, title, and background story.">
+    <meta property="og:image" content="https://artworkidentifier.com/artwork-identifier-logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://artworkidentifier.com">
+    <meta property="twitter:title" content="Artwork Identifier - AI-Powered Art Guide">
+    <meta property="twitter:description" content="Unlock the mystery behind any piece of art with AI. Snap a photo and instantly identify the artist, title, and background story.">
+    <meta property="twitter:image" content="https://artworkidentifier.com/artwork-identifier-logo.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://artworkidentifier.com">
+
+    <!-- App Store Link -->
+    <meta name="apple-itunes-app" content="app-id=6642639717">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Artwork Identifier",
+        "description": "AI-Powered Art Guide. Unlock the mystery behind any piece of art with Artwork Identifier. Whether you're a seasoned art connoisseur or a curious beginner, our app allows you to explore the fascinating world of art with just a photo.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": ["iOS", "Android"],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "downloadUrl": "https://apps.apple.com/tr/app/artwork-identifier/id6642639717",
+        "author": {
+            "@type": "Person",
+            "name": "Asil Arslan"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "ratingCount": "2"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="artwork-identifier-logo.png">
+    <link rel="apple-touch-icon" href="artwork-identifier-logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="artwork-identifier-logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="artwork-identifier-logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #800020 0%, #a0002a 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #800020;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            padding: 2px;
+            box-shadow: 0 2px 6px rgba(128, 0, 32, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #800020;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .app-store-badge {
+            width: 200px;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .how-it-works {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .testimonials {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #800020;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #800020 0%, #a0002a 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            z-index: 999;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                width: 200px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 1rem;
+                gap: 1rem;
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .features-grid,
+            .steps,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        .seo-content {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .seo-content h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .keywords {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .keywords h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .keywords ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .keywords li {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #800020;
+            border: 1px solid #800020;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
   </head>
   <body>
-    <h1>Welcome to Artwork Identifier</h1>
-    <p>This site is under construction.</p>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="artwork-identifier-logo.png" alt="Artwork Identifier Logo" class="header-logo">
+                Artwork Identifier
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Unlock the Mystery Behind Any Piece of Art</h1>
+                <p>Whether you're a seasoned art connoisseur or a curious beginner, our AI-powered app allows you to explore the fascinating world of art with just a photo. Discover the artist, title, and background story instantly.</p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="https://apps.apple.com/tr/app/artwork-identifier/id6642639717" class="cta-button">
+                        <img src="app-store.svg" alt="Download on the App Store" class="app-store-badge">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.artworkidentifier" class="cta-button">
+                        <img src="google-play.svg" alt="Get it on Google Play" class="app-store-badge">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Powerful AI Art Identification Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Instant Artwork Recognition</h3>
+                        <p>Simply snap a photo or upload an image of any artwork, and our advanced AI will identify it within seconds. Discover the artist, title, and background story behind the piece.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Art Style Exploration</h3>
+                        <p>Learn about different art movements, styles, and techniques related to the identified artwork. Deepen your understanding of what makes each piece unique.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍🎨</div>
+                        <h3>Artist Insights</h3>
+                        <p>Gain insights into the artist's life, their influences, and the creative process behind their work. Understand the context and inspiration that shaped the masterpiece.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Historical Context</h3>
+                        <p>Explore the historical significance of the artwork, including its cultural impact and how it fits within the broader art world.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Interactive Learning</h3>
+                        <p>Engage with art in a new way through quizzes and interactive features designed to enhance your knowledge and appreciation of art.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Privacy First</h3>
+                        <p>Your images are processed securely with no data collection, ensuring complete privacy protection. Perfect for art enthusiasts who value their privacy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How Artwork Identifier Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Take a Photo</h3>
+                        <p>Capture a clear image of any artwork, painting, sculpture, or art piece you want to identify</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Our advanced AI algorithms analyze the artwork and match it against our extensive art database</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Discover Art Details</h3>
+                        <p>Get instant results with artist information, artwork title, style details, and historical context</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>What Art Enthusiasts Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"Perfect for art enthusiasts! Whether you're visiting a gallery, museum, or simply curious about art you come across, Artwork Identifier is your go-to companion for art discovery."</p>
+                        <div class="testimonial-author">- Art Museum Visitor</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"As an art history student, this app has been invaluable for my research. It's like having an art expert in my pocket! I can instantly identify works and learn about their historical significance."</p>
+                        <div class="testimonial-author">- Art History Student</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Ideal for students, educators, and anyone looking to expand their understanding of art history. The interactive learning features make exploring art both fun and educational."</p>
+                        <div class="testimonial-author">- Art Educator</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-content">
+            <div class="container">
+                <h2>The Ultimate AI-Powered Art Identification Tool</h2>
+                <p>Artwork Identifier revolutionizes how art enthusiasts, collectors, students, and professionals discover and learn about art. Our cutting-edge artificial intelligence technology combines advanced image recognition with an extensive database of artworks, making it the most comprehensive art identification app available on iOS and Android.</p>
+
+                <p>Whether you're exploring a museum, browsing an art gallery, or examining pieces in your personal collection, Artwork Identifier provides instant access to detailed information about any artwork. Our app recognizes artworks from various art movements including Renaissance, Impressionism, Modern Art, Contemporary Art, Abstract Expressionism, Surrealism, Pop Art, and more.</p>
+
+                <h2>Perfect for Art Professionals and Enthusiasts</h2>
+                <p>Museum visitors, gallery attendees, art historians, collectors, students, and educators worldwide trust Artwork Identifier for accurate artwork identification and educational content. The app supports recognition for paintings, drawings, sculptures, prints, and other artwork mediums.</p>
+
+                <div class="keywords">
+                    <h3>Supported Art Categories & Movements</h3>
+                    <ul>
+                        <li>Renaissance Art</li>
+                        <li>Impressionism</li>
+                        <li>Modern Art</li>
+                        <li>Contemporary Art</li>
+                        <li>Abstract Expressionism</li>
+                        <li>Surrealism</li>
+                        <li>Pop Art</li>
+                        <li>Baroque</li>
+                        <li>Romanticism</li>
+                        <li>Cubism</li>
+                        <li>Realism</li>
+                        <li>Post-Impressionism</li>
+                    </ul>
+                </div>
+
+                <h2>Advanced AI Technology for Accurate Results</h2>
+                <p>Our proprietary machine learning algorithms have been trained on thousands of verified artworks, ensuring high accuracy rates in identification. The app continuously learns and improves, expanding its recognition capabilities with regular updates.</p>
+
+                <p>Artwork Identifier works seamlessly on both iOS and Android devices, making art discovery accessible to everyone. The app's intuitive interface ensures that both beginners and experts can navigate easily and get results quickly. With features like interactive learning and art style exploration, the app transforms art appreciation into an engaging educational experience.</p>
+
+                <h2>Why Choose Artwork Identifier?</h2>
+                <p><strong>Perfect for Art Enthusiasts:</strong> Whether you're visiting a gallery, museum, or simply curious about art you come across, Artwork Identifier is your go-to companion for art discovery.</p>
+                
+                <p><strong>Educational Tool:</strong> Ideal for students, educators, and anyone looking to expand their understanding of art history. The interactive learning features make exploring art both fun and educational.</p>
+                
+                <p><strong>User-Friendly Interface:</strong> Easy to navigate with a clean and intuitive design, making art exploration accessible to everyone, regardless of their art knowledge level.</p>
+            </div>
+        </section>
+
+        <section id="download" class="cta-section">
+            <div class="container">
+                <h2>Start Exploring the World of Art Today</h2>
+                <p>Join thousands of art enthusiasts who trust Artwork Identifier for accurate artwork identification and discovery</p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="https://apps.apple.com/tr/app/artwork-identifier/id6642639717" class="cta-button">
+                        <img src="app-store.svg" alt="Download on the App Store" class="app-store-badge">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.artworkidentifier" class="cta-button">
+                        <img src="google-play.svg" alt="Get it on Google Play" class="app-store-badge">
+                    </a>
+                </div>
+                <br><br>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Compatible with iPhone, iPad, Mac, and Android devices • iOS 17.5+ / Android 8.0+ Required • Free with Premium Options</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:asilarslan93@gmail.com">Support</a>
+                <a href="terms-of-use.html">Terms of Use</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="https://apps.apple.com/tr/app/artwork-identifier/id6642639717">App Store</a>
+                <a href="https://play.google.com/store/apps/details?id=com.artworkidentifier">Google Play</a>
+            </div>
+            <p>&copy; 2025 Artwork Identifier by Asil Arslan. All rights reserved.</p>
+            <p>Unlock the mystery behind any piece of art with AI-powered recognition technology.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            console.log('Menu toggle clicked');
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+                console.log('Menu active state:', navLinks.classList.contains('active'));
+            }
+        }
+
+        // Close menu when clicking on a link
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('navLinks').classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const nav = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+
+                if (nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    </script>
   </body>
 </html>
