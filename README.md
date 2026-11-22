@@ -25,3 +25,5 @@ Images: `assets/art/<key>.webp`, credits in `content/art_credits.json` and shown
 
 - Store ratings are not shown; no invented reviews.
 - Give museum wings/areas, not room numbers (they change).
+
+App screens on the site (`assets/img/screen-<lang>-<n>.webp`) are rendered by `tools/screens.js` from `tools/screens.html` at iPhone 15/16 size; they mirror the app's chat screen.

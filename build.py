@@ -282,7 +282,7 @@ def app_ld(app, lang):
         "operatingSystem": f"iOS {app['min_os']} or later", "applicationCategory": "EducationalApplication",
         "url": SITE + home_path(lang), "downloadUrl": f"https://apps.apple.com/app/id{APP_ID}",
         "image": f"{SITE}/assets/img/icon-512.png",
-        "screenshot": [f"{SITE}/assets/img/screen-{i}.webp" for i in (1, 2, 3)],
+        "screenshot": [f"{SITE}/assets/img/screen-{lang}-{i}.webp" for i in (1, 2, 3)],
         "softwareVersion": app["version"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
     }, {
         "@context": "https://schema.org", "@type": "MobileApplication", "name": APP_NAME, "operatingSystem": "Android",
@@ -292,21 +292,11 @@ def app_ld(app, lang):
     }]
 
 
-STATUS_ICONS = ('<svg width="17" height="11" viewBox="0 0 17 11" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/>'
-                '<rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/>'
-                '<rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>'
-                '<svg width="25" height="12" viewBox="0 0 25 12" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3" '
-                'fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/>'
-                '<rect x="22.5" y="4" width="1.5" height="4" rx=".75" opacity=".4"/></svg>')
-
-
-def device(n, alt, eager=False, small=False):
-    """A real app screenshot (cropped below the status bar) inside a drawn iPhone frame.
-    The screenshots are 16:9 (iPhone 8 Plus size), so the frame is the classic home-button model."""
+def device(n, alt, lang, eager=False, small=False):
+    """App screen (rendered by tools/screens.js at iPhone 15/16 size) inside a thin modern iPhone frame."""
     load = 'fetchpriority="high"' if eager else 'loading="lazy"'
-    return (f'<div class="device{" small" if small else ""}"><div class="screen"><div class="sbar"><span>9:41</span>'
-            f'<span class="ic">{STATUS_ICONS}</span></div>'
-            f'<img src="/assets/img/screen-{n}.webp" alt="{esc(alt)}" width="645" height="1057" {load}></div></div>')
+    return (f'<div class="device{" small" if small else ""}"><img src="/assets/img/screen-{lang}-{n}.webp" alt="{esc(alt)}" '
+            f'width="645" height="1398" {load}></div>')
 
 
 def card(href, title, text, img=None):
@@ -334,7 +324,7 @@ def build_home(lang, app):
     t = HOME[lang]
     fmt = {"min_os": app["min_os"]}
     examples = "".join(
-        f'<figure><img src="/assets/img/screen-{i}.webp" alt="{esc(t["shots_alt"][i - 1])}" width="645" height="1057" loading="lazy">'
+        f'<figure>{device(i, t["shots_alt"][i - 1], lang)}'
         f'<figcaption><b>{esc(name)}</b>{esc(why)}</figcaption></figure>' for i, name, why in t["examples"])
     steps = "".join(f'<div class="card"><div class="num">{i}</div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>'
                     for i, (a, b) in enumerate(t["steps"], 1))
@@ -353,7 +343,7 @@ def build_home(lang, app):
 <p style="margin-top:14px"><a href="{museum_hub(lang)}" style="font-weight:600">{esc(t['museums_h2'])} →</a></p>
 {qr(t['qr'])}
 </div>
-<div class="media">{device(1, t['hero_alt'], eager=True)}</div>
+<div class="media">{device(1, t['hero_alt'], lang, eager=True)}</div>
 </div></section>
 
 <section><div class="wrap">
@@ -393,7 +383,7 @@ def build_home(lang, app):
     jsonld = [*app_ld(app, lang), {"@context": "https://schema.org", "@type": "WebSite", "name": APP_NAME,
                                    "url": SITE + home_path(lang), "inLanguage": lang}]
     out = page(lang, t["title"], t["desc"], home_path(lang), body, alternates=alts, jsonld=jsonld,
-               preload='<link rel="preload" as="image" href="/assets/img/screen-1.webp" fetchpriority="high">')
+               preload=f'<link rel="preload" as="image" href="/assets/img/screen-{lang}-1.webp" fetchpriority="high">')
     write("index.html" if lang == "en" else f"{lang}/index.html", out)
 
 
@@ -406,7 +396,7 @@ def article(lang, *, path, title, desc, h1, intro, body_html, faq, alts, crumb, 
     inline = f'<div class="inline-cta"><p>{esc(t["inline_cta"])}</p>{badge(t, "web-inline-" + where)}</div>'
     shot_html = ""
     if shot:
-        shot_html = (f'<div class="guide-shot">{device(shot, t["shots_alt"][shot - 1], small=True)}'
+        shot_html = (f'<div class="guide-shot">{device(shot, t["shots_alt"][shot - 1], lang, small=True)}'
                      f'<div><p>{esc(t["shot_cta"])}</p>{badge(t, "web-shot-" + where)}</div></div>')
     updated = f'<p style="font-size:.85rem;color:var(--muted);margin-top:10px">{t["updated"]}: {TODAY}</p>' if kind == "guide" else ""
     hero_html = f'<div class="wrap narrow" style="margin-top:18px">{art_img(hero, tr_(ART[hero]["t"], lang), lang, eager=True, cls="wide")}</div>' if hero else ""
