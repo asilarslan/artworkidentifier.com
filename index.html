@@ -26,6 +26,7 @@
 <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
 <link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/assets/img/screen-en-1.webp" fetchpriority="high">
 <style>:root {
   --brand: #9a3412;
@@ -316,6 +317,120 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 .examples figcaption { text-align: left; }
 .guide-shot .device { margin: 0; }
 @media (max-width: 600px) { .guide-shot .device { margin: 0 auto; } }
+
+/* ================= gallery redesign ================= */
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 500 600; font-display: swap; src: url(/assets/fonts/fraunces-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 500 600; font-display: swap; src: url(/assets/fonts/fraunces-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+:root { --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif; --gold: #e2b866; --ink-dark: #15110f; }
+h1, h2, h3, .brand, .stats b, .wn { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; }
+h1 { font-weight: 600; }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.kick { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin-bottom: 8px; }
+.kick.light { color: var(--gold); }
+
+/* hero: a dark gallery wall with a framed painting and the phone in front */
+.hero.gallery { background: radial-gradient(ellipse 70% 80% at 75% 35%, #3b2a1f 0, #1c1512 55%, var(--ink-dark) 100%); color: #f4ede4; padding: 56px 0 64px; }
+.hero.gallery h1 { color: #fff; font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; }
+.hero.gallery .sub { color: #d8cdc0; }
+.hero.gallery .compat { color: #a89a8b; }
+.hero.gallery .qr span { color: #cbbfb2; }
+.hero.gallery .qr img { border-color: #3a2f28; }
+.stage { position: relative; height: 600px; max-width: 520px; margin-left: auto; }
+.gilt { position: absolute; right: 0; top: 0; width: 66%; margin: 0; padding: 16px; background: linear-gradient(135deg, #8a5d1c, #f1d389 22%, #a8742a 48%, #f0cd7a 72%, #7c531b);
+  box-shadow: 0 40px 80px rgba(0,0,0,.55), inset 0 0 0 2px rgba(0,0,0,.3); border-radius: 3px; }
+.gilt img { display: block; width: 100%; height: auto; border: 8px solid #1d1510; box-shadow: inset 0 0 20px rgba(0,0,0,.6); }
+.stage .device { position: absolute; left: 0; bottom: 0; width: 54%; max-width: 270px; margin: 0; }
+.hero.gallery .credit { color: #8d7f71; text-align: right; margin-top: 10px; }
+@media (max-width: 860px) {
+  .hero.gallery { padding: 32px 0 44px; }
+  .stage { height: auto; max-width: 340px; margin: 0 auto; padding-top: 40px; }
+  .gilt { width: 62%; right: -6px; top: 0; padding: 10px; }
+  .gilt img { border-width: 5px; }
+  .stage .device { position: relative; width: 70%; left: 0; }
+  .hero.gallery .credit { text-align: center; }
+}
+
+/* stats strip */
+.statbar { background: #120e0c; padding: 26px 0; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+.stats b { display: block; font-size: 2.4rem; line-height: 1; color: var(--gold); }
+.stats span { display: block; margin-top: 6px; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #bdb0a2; }
+@media (max-width: 600px) { .stats { grid-template-columns: 1fr 1fr; gap: 22px 12px; } .stats b { font-size: 2rem; } }
+
+/* cards with image labels */
+.mcard .pic { position: relative; }
+.mcard .pic img { height: 210px; transition: transform .4s; }
+.mcard:hover .pic img { transform: scale(1.04); }
+.mcard .pic { overflow: hidden; }
+.mcard .pic em { position: absolute; left: 10px; bottom: 10px; font-style: normal; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: rgba(15,11,9,.7); padding: 4px 8px; border-radius: 6px; }
+.mcard b { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; padding-top: 14px; }
+
+/* art style tiles */
+.strip a { flex: 0 0 190px; position: relative; border-radius: 14px; overflow: hidden; }
+.strip img { width: 190px; height: 250px; border-radius: 0; transition: transform .4s; }
+.strip a:hover img { transform: scale(1.05); }
+.strip span { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 40px 12px 12px; background: linear-gradient(transparent, rgba(10,8,6,.85)); color: #fff; }
+.strip span b { display: block; font-family: var(--serif); font-size: 1.05rem; }
+.strip span i { font-style: normal; font-size: .75rem; color: #d9cbbb; }
+
+/* steps & features with icons */
+.ico { width: 46px; height: 46px; padding: 11px; border-radius: 14px; background: #f5e6d3; color: var(--brand); margin-bottom: 14px; display: block; }
+.step .num { display: none; }
+.card h3 { font-size: 1.2rem; }
+
+/* closing band with a painting behind it */
+.cta-band.art-bg { background: linear-gradient(rgba(18,13,10,.80), rgba(18,13,10,.88)), url(/assets/art/starry-night.webp) center / cover; padding: 56px 28px; }
+.cta-band h2 { color: #fff; }
+
+/* museum page banner */
+.banner { position: relative; overflow: hidden; background: var(--ink-dark); color: #f4ede4; padding: 44px 0 52px; }
+.banner::before { content: ""; position: absolute; inset: -60px; background: var(--bg) center / cover; filter: blur(30px) brightness(.32) saturate(1.2); }
+.banner-in { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: center; }
+.banner h1 { color: #fff; font-size: clamp(2.1rem, 4.4vw, 3.2rem); line-height: 1.08; margin: 6px 0 14px; }
+.banner .intro { color: #ddd2c5; font-size: 1.1rem; }
+.banner .crumbs, .banner .crumbs a { color: #b9ab9c; }
+.banner-art figure.art img { max-height: 440px; width: auto; max-width: 100%; margin: 0 auto; display: block; border-radius: 3px; box-shadow: 0 30px 70px rgba(0,0,0,.6); }
+.banner-art .credit { color: #9d8f80; text-align: center; }
+@media (max-width: 860px) { .banner-in { grid-template-columns: 1fr; gap: 24px; } .banner-art figure.art img { max-height: 320px; } }
+
+/* jump-to thumbnails */
+.jump { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; }
+.jump a { flex: 0 0 128px; text-decoration: none; color: var(--ink); font-size: .82rem; font-weight: 600; line-height: 1.3; }
+.jump img { width: 128px; height: 92px; object-fit: cover; border-radius: 10px; margin-bottom: 6px; transition: transform .3s; }
+.jump a:hover img { transform: translateY(-2px); }
+
+/* works on a gallery wall */
+.works { gap: 0; }
+.work { grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; padding: 36px 0; scroll-margin-top: 80px; }
+.work:nth-child(even) .wall { order: 2; }
+.wall { background: linear-gradient(#efe9e1, #e6ded3); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; align-items: center; }
+.wall figure.art img { max-height: 380px; width: auto; max-width: 100%; border-radius: 2px; box-shadow: 0 18px 40px rgba(40,25,15,.35); }
+.wall .credit { text-align: center; margin-top: 12px; }
+.wn { display: block; width: auto; height: auto; background: none; color: var(--brand); opacity: .55; font-size: 2.4rem; line-height: 1; border-radius: 0; margin-bottom: 6px; }
+.wtext h3 { font-size: 1.7rem; display: block; margin-bottom: 4px; }
+.look { background: var(--soft); border-left: 3px solid var(--brand); padding: 14px 16px; border-radius: 10px; margin-top: 12px; }
+.look b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: 4px; }
+@media (max-width: 760px) {
+  .work { grid-template-columns: 1fr; gap: 18px; padding: 26px 0; }
+  .work:nth-child(even) .wall { order: 0; }
+  .wall { padding: 20px; }
+  .wall figure.art img { max-height: 320px; }
+}
+
+/* art movements: two columns */
+.mv { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; padding: 40px 0; margin: 0; }
+.mv:nth-of-type(even) .mvp { order: -1; }
+.mv h2 { font-size: 2rem; }
+.mv.noimg { grid-template-columns: 1fr; }
+.clue b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin: 12px 0 4px; }
+.mvp .meta { text-align: center; margin-top: 8px; }
+.mvp figure.art { background: linear-gradient(#efe9e1, #e6ded3); border-radius: 18px; padding: 26px; text-align: center; }
+.mvp figure.art img { max-height: 380px; width: auto; max-width: 100%; border-radius: 2px; box-shadow: 0 18px 40px rgba(40,25,15,.35); background: none; }
+@media (max-width: 760px) { .mv { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; } .mv:nth-of-type(even) .mvp { order: 0; } }
+.toc { position: sticky; top: 60px; z-index: 5; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); padding: 10px 0; margin: 0; overflow-x: auto; flex-wrap: nowrap; }
+.toc a { white-space: nowrap; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Artwork Identifier", "operatingSystem": "iOS 17.5 or later", "applicationCategory": "EducationalApplication", "url": "https://artworkidentifier.com/", "downloadUrl": "https://apps.apple.com/app/id6642639717", "image": "https://artworkidentifier.com/assets/img/icon-512.png", "screenshot": ["https://artworkidentifier.com/assets/img/screen-en-1.webp", "https://artworkidentifier.com/assets/img/screen-en-2.webp", "https://artworkidentifier.com/assets/img/screen-en-3.webp"], "softwareVersion": "1.5", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Artwork Identifier", "operatingSystem": "Android", "applicationCategory": "EducationalApplication", "url": "https://artworkidentifier.com/", "downloadUrl": "https://play.google.com/store/apps/details?id=com.artworkidentifier", "image": "https://artworkidentifier.com/assets/img/icon-512.png", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Artwork Identifier", "url": "https://artworkidentifier.com/", "inLanguage": "en"}</script>
 </head>
@@ -330,49 +445,53 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 <a class="get" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-nav-en&mt=8" data-play="https://play.google.com/store/apps/details?id=com.artworkidentifier&amp;referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-nav-en" rel="noopener">Get the app</a>
 </nav></div></header>
 <main>
-<section class="hero" data-hero><div class="wrap">
+<section class="hero gallery" data-hero><div class="wrap">
 <div>
-<h1>What&#x27;s that painting? Snap it and find out.</h1>
+<p class="kick light">Your art guide, in your pocket</p>
+<h1>What’s that painting? Snap it and find out.</h1>
 <p class="sub">Take a photo of any painting, sculpture or monument — in a museum, a book or on a screen. Artwork Identifier tells you the artist, title and date, then the story behind it.</p>
 <div class="ctas"><a class="badge" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-hero-en&mt=8" rel="noopener"><img src="/assets/img/app-store-en-us.svg" alt="Download on the App Store" width="162" height="54"></a><a class="badge" href="https://play.google.com/store/apps/details?id=com.artworkidentifier&referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-hero-en" rel="noopener"><img src="/assets/img/play-en.webp" alt="Get it on Google Play" width="164" height="54"></a></div>
 <p class="compat">Free to try · iPhone &amp; iPad (iOS 17.5+) · Android · English, Türkçe, Français, Deutsch, Español</p>
-<p style="margin-top:14px"><a href="/museums/" style="font-weight:600">Must-see artworks, museum by museum →</a></p>
 <div class="qr"><img src="/assets/img/qr-app-store.svg" alt="QR code" width="84" height="84" loading="lazy"><span>Scan with your phone camera to get the app</span></div>
 </div>
-<div class="media"><div class="device"><img src="/assets/img/screen-en-1.webp" alt="Artwork Identifier identifying the Mona Lisa and telling its story" width="645" height="1398" fetchpriority="high"></div></div>
+<div class="media"><div class="stage">
+<figure class="gilt"><img src="/assets/art/girl-with-a-pearl-earring.webp" alt="Johannes Vermeer, Girl with a Pearl Earring" width="900" height="1066"></figure>
+<div class="device"><img src="/assets/img/screen-en-1.webp" alt="Artwork Identifier identifying the Mona Lisa and telling its story" width="645" height="1398" fetchpriority="high"></div>
+</div><a class="credit" href="https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></div>
 </div></section>
+<section class="statbar"><div class="wrap"><div class="stats"><div><b>8</b><span>museum guides</span></div><div><b>57</b><span>masterpieces explained</span></div><div><b>16</b><span>art movements</span></div><div><b>5</b><span>languages</span></div></div></div></section>
 
 <section><div class="wrap">
-<h2>Must-see artworks, museum by museum</h2><p class="lead">Short, practical guides to what to see first — with the artworks, where they hang and what to look for.</p>
-<div class="mcards"><a class="mcard" href="/museums/louvre-must-see-artworks/"><img src="/assets/art/mona-lisa.webp" alt="" loading="lazy" decoding="async"><b>The Louvre · Paris</b><span>The world&#x27;s most visited museum holds tens of thousands of works on display. If you only have a few hours,…</span></a><a class="mcard" href="/museums/musee-dorsay-must-see-artworks/"><img src="/assets/art/moulin-de-la-galette.webp" alt="" loading="lazy" decoding="async"><b>The Musée d&#x27;Orsay · Paris</b><span>Housed in a former railway station, Orsay has the world&#x27;s best-known collection of Impressionist and…</span></a><a class="mcard" href="/museums/met-museum-must-see-paintings/"><img src="/assets/art/washington-crossing-the-delaware.webp" alt="" loading="lazy" decoding="async"><b>The Met · New York</b><span>The Metropolitan Museum of Art covers 5,000 years of art. These paintings are the highlights of the European…</span></a><a class="mcard" href="/museums/uffizi-must-see-artworks/"><img src="/assets/art/birth-of-venus.webp" alt="" loading="lazy" decoding="async"><b>The Uffizi Gallery · Florence</b><span>The Uffizi is the place to see the Italian Renaissance, from Botticelli to Michelangelo and…</span></a><a class="mcard" href="/museums/rijksmuseum-must-see-artworks/"><img src="/assets/art/night-watch.webp" alt="" loading="lazy" decoding="async"><b>The Rijksmuseum · Amsterdam</b><span>The Dutch national museum is the place for Rembrandt and Vermeer. Most of the highlights are in and around…</span></a><a class="mcard" href="/museums/prado-must-see-paintings/"><img src="/assets/art/las-meninas.webp" alt="" loading="lazy" decoding="async"><b>The Prado · Madrid</b><span>Spain&#x27;s national museum holds the greatest collections of Velázquez, Goya and Bosch…</span></a><a class="mcard" href="/museums/national-gallery-london-must-see-paintings/"><img src="/assets/art/arnolfini-portrait.webp" alt="" loading="lazy" decoding="async"><b>The National Gallery · London</b><span>Free to enter and right on Trafalgar Square, the National Gallery covers European painting from the 13th to…</span></a><a class="mcard" href="/museums/vatican-museums-must-see-artworks/"><img src="/assets/art/creation-of-adam.webp" alt="" loading="lazy" decoding="async"><b>The Vatican Museums · Rome</b><span>The route through the Vatican Museums ends in the Sistine Chapel, but there&#x27;s a lot to see on the…</span></a></div>
+<p class="kick">Museum guides</p><h2>Must-see artworks, museum by museum</h2><p class="lead">Short, practical guides to what to see first — with the artworks, where they hang and what to look for.</p>
+<div class="mcards"><a class="mcard" href="/museums/louvre-must-see-artworks/"><div class="pic"><img src="/assets/art/mona-lisa.webp" alt="" loading="lazy" decoding="async"><em>Paris · 10</em></div><b>The Louvre</b><span>The world&#x27;s most visited museum holds tens of thousands of works on display. If you only have a few…</span></a><a class="mcard" href="/museums/musee-dorsay-must-see-artworks/"><div class="pic"><img src="/assets/art/moulin-de-la-galette.webp" alt="" loading="lazy" decoding="async"><em>Paris · 8</em></div><b>The Musée d&#x27;Orsay</b><span>Housed in a former railway station, Orsay has the world&#x27;s best-known collection of Impressionist and…</span></a><a class="mcard" href="/museums/met-museum-must-see-paintings/"><div class="pic"><img src="/assets/art/washington-crossing-the-delaware.webp" alt="" loading="lazy" decoding="async"><em>New York · 7</em></div><b>The Met</b><span>The Metropolitan Museum of Art covers 5,000 years of art. These paintings are the highlights of the…</span></a><a class="mcard" href="/museums/uffizi-must-see-artworks/"><div class="pic"><img src="/assets/art/birth-of-venus.webp" alt="" loading="lazy" decoding="async"><em>Florence · 7</em></div><b>The Uffizi Gallery</b><span>The Uffizi is the place to see the Italian Renaissance, from Botticelli to Michelangelo and…</span></a><a class="mcard" href="/museums/rijksmuseum-must-see-artworks/"><div class="pic"><img src="/assets/art/night-watch.webp" alt="" loading="lazy" decoding="async"><em>Amsterdam · 6</em></div><b>The Rijksmuseum</b><span>The Dutch national museum is the place for Rembrandt and Vermeer. Most of the highlights are in and…</span></a><a class="mcard" href="/museums/prado-must-see-paintings/"><div class="pic"><img src="/assets/art/las-meninas.webp" alt="" loading="lazy" decoding="async"><em>Madrid · 7</em></div><b>The Prado</b><span>Spain&#x27;s national museum holds the greatest collections of Velázquez, Goya and Bosch…</span></a><a class="mcard" href="/museums/national-gallery-london-must-see-paintings/"><div class="pic"><img src="/assets/art/arnolfini-portrait.webp" alt="" loading="lazy" decoding="async"><em>London · 7</em></div><b>The National Gallery</b><span>Free to enter and right on Trafalgar Square, the National Gallery covers European painting from the 13th…</span></a><a class="mcard" href="/museums/vatican-museums-must-see-artworks/"><div class="pic"><img src="/assets/art/creation-of-adam.webp" alt="" loading="lazy" decoding="async"><em>Rome · 5</em></div><b>The Vatican Museums</b><span>The route through the Vatican Museums ends in the Sistine Chapel, but there&#x27;s a lot to see on the…</span></a></div>
 </div></section>
 
 <section class="alt"><div class="wrap">
-<h2>Recognise any art style</h2><p class="lead">Sixteen art movements, from the Renaissance to Pop Art, each with a famous example.</p>
-<div class="strip"><a href="/art-styles/#renaissance"><img src="/assets/art/school-of-athens.webp" alt="Renaissance" loading="lazy"><span>Renaissance</span></a><a href="/art-styles/#baroque"><img src="/assets/art/night-watch.webp" alt="Baroque" loading="lazy"><span>Baroque</span></a><a href="/art-styles/#rococo"><img src="/assets/art/the-swing.webp" alt="Rococo" loading="lazy"><span>Rococo</span></a><a href="/art-styles/#neoclassicism"><img src="/assets/art/oath-of-the-horatii.webp" alt="Neoclassicism" loading="lazy"><span>Neoclassicism</span></a><a href="/art-styles/#romanticism"><img src="/assets/art/wanderer-above-the-sea-of-fog.webp" alt="Romanticism" loading="lazy"><span>Romanticism</span></a><a href="/art-styles/#realism"><img src="/assets/art/the-gleaners.webp" alt="Realism" loading="lazy"><span>Realism</span></a><a href="/art-styles/#impressionism"><img src="/assets/art/impression-sunrise.webp" alt="Impressionism" loading="lazy"><span>Impressionism</span></a><a href="/art-styles/#post-impressionism"><img src="/assets/art/starry-night.webp" alt="Post-Impressionism" loading="lazy"><span>Post-Impressionism</span></a><a href="/art-styles/#pointillism"><img src="/assets/art/la-grande-jatte.webp" alt="Pointillism" loading="lazy"><span>Pointillism</span></a><a href="/art-styles/#art-nouveau"><img src="/assets/art/the-kiss.webp" alt="Art Nouveau &amp; Vienna Secession" loading="lazy"><span>Art Nouveau &amp; Vienna Secession</span></a><a href="/art-styles/#expressionism"><img src="/assets/art/the-scream.webp" alt="Expressionism" loading="lazy"><span>Expressionism</span></a><a href="/art-styles/#cubism"><img src="/assets/art/portrait-of-picasso-gris.webp" alt="Cubism" loading="lazy"><span>Cubism</span></a><a href="/art-styles/#abstract"><img src="/assets/art/composition-vii.webp" alt="Abstract art" loading="lazy"><span>Abstract art</span></a><a href="/art-styles/#ukiyo-e"><img src="/assets/art/great-wave.webp" alt="Ukiyo-e (Japanese woodblock prints)" loading="lazy"><span>Ukiyo-e (Japanese woodblock prints)</span></a></div>
+<p class="kick">Art styles</p><h2>Recognise any art style</h2><p class="lead">Sixteen art movements, from the Renaissance to Pop Art, each with a famous example.</p>
+<div class="strip"><a href="/art-styles/#renaissance"><img src="/assets/art/school-of-athens.webp" alt="Renaissance" loading="lazy"><span><b>Renaissance</b><i>c. 1400–1600</i></span></a><a href="/art-styles/#baroque"><img src="/assets/art/night-watch.webp" alt="Baroque" loading="lazy"><span><b>Baroque</b><i>c. 1600–1750</i></span></a><a href="/art-styles/#rococo"><img src="/assets/art/the-swing.webp" alt="Rococo" loading="lazy"><span><b>Rococo</b><i>c. 1730–1780</i></span></a><a href="/art-styles/#neoclassicism"><img src="/assets/art/oath-of-the-horatii.webp" alt="Neoclassicism" loading="lazy"><span><b>Neoclassicism</b><i>c. 1760–1830</i></span></a><a href="/art-styles/#romanticism"><img src="/assets/art/wanderer-above-the-sea-of-fog.webp" alt="Romanticism" loading="lazy"><span><b>Romanticism</b><i>c. 1800–1850</i></span></a><a href="/art-styles/#realism"><img src="/assets/art/the-gleaners.webp" alt="Realism" loading="lazy"><span><b>Realism</b><i>c. 1840–1880</i></span></a><a href="/art-styles/#impressionism"><img src="/assets/art/impression-sunrise.webp" alt="Impressionism" loading="lazy"><span><b>Impressionism</b><i>c. 1860–1890</i></span></a><a href="/art-styles/#post-impressionism"><img src="/assets/art/starry-night.webp" alt="Post-Impressionism" loading="lazy"><span><b>Post-Impressionism</b><i>c. 1886–1905</i></span></a><a href="/art-styles/#pointillism"><img src="/assets/art/la-grande-jatte.webp" alt="Pointillism" loading="lazy"><span><b>Pointillism</b><i>c. 1884–1900</i></span></a><a href="/art-styles/#art-nouveau"><img src="/assets/art/the-kiss.webp" alt="Art Nouveau &amp; Vienna Secession" loading="lazy"><span><b>Art Nouveau &amp; Vienna Secession</b><i>c. 1890–1910</i></span></a><a href="/art-styles/#expressionism"><img src="/assets/art/the-scream.webp" alt="Expressionism" loading="lazy"><span><b>Expressionism</b><i>c. 1905–1925</i></span></a><a href="/art-styles/#cubism"><img src="/assets/art/portrait-of-picasso-gris.webp" alt="Cubism" loading="lazy"><span><b>Cubism</b><i>c. 1907–1920</i></span></a><a href="/art-styles/#abstract"><img src="/assets/art/composition-vii.webp" alt="Abstract art" loading="lazy"><span><b>Abstract art</b><i>c. 1910 →</i></span></a><a href="/art-styles/#ukiyo-e"><img src="/assets/art/great-wave.webp" alt="Ukiyo-e (Japanese woodblock prints)" loading="lazy"><span><b>Ukiyo-e (Japanese woodblock prints)</b><i>c. 1650–1900</i></span></a></div>
 <div class="ctas"><a class="btn btn-primary" href="/art-styles/">Open the art styles guide</a>
 <a class="btn btn-ghost" href="/art-style-finder/">Try the style finder</a></div>
 </div></section>
 
 <section><div class="wrap">
-<h2>How the app answers</h2><p class="lead">Snap a work and ask about it: you get the title, artist, date, where it hangs and the story behind it.</p>
+<p class="kick">The app</p><h2>How the app answers</h2><p class="lead">Snap a work and ask about it: you get the title, artist, date, where it hangs and the story behind it.</p>
 <div class="examples"><figure><div class="device"><img src="/assets/img/screen-en-1.webp" alt="Mona Lisa identified with its story" width="645" height="1398" loading="lazy"></div><figcaption><b>Mona Lisa</b>Title, artist, date, where to see it and what to look for.</figcaption></figure><figure><div class="device"><img src="/assets/img/screen-en-2.webp" alt="The Starry Night identified with its story" width="645" height="1398" loading="lazy"></div><figcaption><b>The Starry Night</b>Where and how Van Gogh painted it, and the style it belongs to.</figcaption></figure><figure><div class="device"><img src="/assets/img/screen-en-3.webp" alt="The Birth of Venus identified with its story" width="645" height="1398" loading="lazy"></div><figcaption><b>The Birth of Venus</b>The story in the picture and why it mattered in Renaissance Florence.</figcaption></figure></div>
 </div></section>
 
 <section id="how" class="alt"><div class="wrap">
-<h2>How it works</h2>
-<div class="grid3" style="margin-top:24px"><div class="card"><div class="num">1</div><h3>Take a photo</h3><p>Of a painting, statue, fresco or famous building. A photo of a screen or a book works too.</p></div><div class="card"><div class="num">2</div><h3>Get the story</h3><p>Artist, title, date and the background: who painted it, why, and what to notice.</p></div><div class="card"><div class="num">3</div><h3>Ask follow-up questions</h3><p>Curious about the symbols, the technique or the artist&#x27;s life? Just ask in the chat.</p></div></div>
-<h2 style="margin-top:56px">Made for curious people</h2>
-<div class="grid3" style="margin-top:24px"><div class="card"><h3>Museum visits</h3><p>Skip the audio guide queue: snap a work and read about it at your own pace.</p></div><div class="card"><h3>Travel</h3><p>Statues, fountains, churches and street art on your trips.</p></div><div class="card"><h3>Students</h3><p>Quick context for art history homework and revision.</p></div><div class="card"><h3>Paintings at home</h3><p>Find out what that print or painting on the wall might be.</p></div><div class="card"><h3>Five languages</h3><p>The app speaks English, Turkish, French, German and Spanish.</p></div><div class="card"><h3>Chat with your artwork</h3><p>Ask follow-up questions about anything in the picture.</p></div></div>
+<p class="kick">How it works</p><h2>How it works</h2>
+<div class="grid3" style="margin-top:24px"><div class="card step"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><div class="num">1</div><h3>Take a photo</h3><p>Of a painting, statue, fresco or famous building. A photo of a screen or a book works too.</p></div><div class="card step"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg><div class="num">2</div><h3>Get the story</h3><p>Artist, title, date and the background: who painted it, why, and what to notice.</p></div><div class="card step"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg><div class="num">3</div><h3>Ask follow-up questions</h3><p>Curious about the symbols, the technique or the artist&#x27;s life? Just ask in the chat.</p></div></div>
+<h2 style="margin-top:64px">Made for curious people</h2>
+<div class="grid3" style="margin-top:24px"><div class="card feat"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg><h3>Museum visits</h3><p>Skip the audio guide queue: snap a work and read about it at your own pace.</p></div><div class="card feat"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-8-7 13-3-6z"/></svg><h3>Travel</h3><p>Statues, fountains, churches and street art on your trips.</p></div><div class="card feat"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><h3>Students</h3><p>Quick context for art history homework and revision.</p></div><div class="card feat"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg><h3>Paintings at home</h3><p>Find out what that print or painting on the wall might be.</p></div><div class="card feat"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><h3>Five languages</h3><p>The app speaks English, Turkish, French, German and Spanish.</p></div><div class="card feat"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg><h3>Chat with your artwork</h3><p>Ask follow-up questions about anything in the picture.</p></div></div>
 </div></section>
 
 <section><div class="wrap">
-<h2>Guides</h2>
-<div class="mcards" style="margin-top:20px"><a class="mcard" href="/guides/how-to-identify-a-painting/"><img src="/assets/art/mona-lisa.webp" alt="" loading="lazy" decoding="async"><b>How to identify a painting</b><span>Found a painting and want to know what it is? Use reverse image search, the signature, labels on the back,…</span></a><a class="mcard" href="/guides/is-my-painting-valuable/"><img src="/assets/art/the-lacemaker.webp" alt="" loading="lazy" decoding="async"><b>Is my painting valuable?</b><span>Think you have a valuable painting? Check if it&#x27;s an original or a print, find the artist, look at auction…</span></a><a class="mcard" href="/art-styles/"><img src="/assets/art/starry-night.webp" alt="" loading="lazy" decoding="async"><b>How to recognise art styles</b><span>How to recognise art movements at a glance: Renaissance, Baroque, Impressionism, Post-Impressionism, Cubism,…</span></a><a class="mcard" href="/art-style-finder/"><img src="/assets/art/composition-vii.webp" alt="" loading="lazy" decoding="async"><b>Art style finder</b><span>Free art style identifier: answer four questions about a painting&#x27;s subject, brushwork, colour and mood to…</span></a></div>
+<p class="kick">Guides</p><h2>Guides</h2>
+<div class="mcards" style="margin-top:20px"><a class="mcard" href="/guides/how-to-identify-a-painting/"><div class="pic"><img src="/assets/art/mona-lisa.webp" alt="" loading="lazy" decoding="async"></div><b>How to identify a painting</b><span>Found a painting and want to know what it is? Use reverse image search, the signature, labels on the…</span></a><a class="mcard" href="/guides/is-my-painting-valuable/"><div class="pic"><img src="/assets/art/the-lacemaker.webp" alt="" loading="lazy" decoding="async"></div><b>Is my painting valuable?</b><span>Think you have a valuable painting? Check if it&#x27;s an original or a print, find the artist, look at…</span></a><a class="mcard" href="/art-styles/"><div class="pic"><img src="/assets/art/starry-night.webp" alt="" loading="lazy" decoding="async"></div><b>How to recognise art styles</b><span>How to recognise art movements at a glance: Renaissance, Baroque, Impressionism, Post-Impressionism,…</span></a><a class="mcard" href="/art-style-finder/"><div class="pic"><img src="/assets/art/composition-vii.webp" alt="" loading="lazy" decoding="async"></div><b>Art style finder</b><span>Free art style identifier: answer four questions about a painting&#x27;s subject, brushwork, colour and mood…</span></a></div>
 </div></section>
 
-<section id="faq" class="alt"><div class="wrap narrow"><h2>FAQ</h2><div class="faq"><details><summary>Is Artwork Identifier free?</summary><p>You can download it and try it free. Premium is a weekly subscription with a 3-day free trial; cancel any time in your store settings.</p></details><details><summary>Does it work in museums?</summary><p>Yes. Many museums allow photos without flash; the Sistine Chapel and some exhibitions don&#x27;t, so check the signs.</p></details><details><summary>Can it identify paintings I own?</summary><p>It can describe the style, likely period and similar artists, and identify well-known works and prints. It can&#x27;t confirm whether a painting is an original or estimate its value reliably — for that, see our guide on finding out if a painting is valuable.</p></details><details><summary>Which languages does it support?</summary><p>English, Turkish, French, German and Spanish.</p></details><details><summary>Is it on Android?</summary><p>Yes, on Google Play, and on the App Store for iPhone and iPad.</p></details></div></div></section>
-<section><div class="wrap"><div class="cta-band">
+<section id="faq" class="alt"><div class="wrap narrow"><p class="kick">FAQ</p><h2>FAQ</h2><div class="faq"><details><summary>Is Artwork Identifier free?</summary><p>You can download it and try it free. Premium is a weekly subscription with a 3-day free trial; cancel any time in your store settings.</p></details><details><summary>Does it work in museums?</summary><p>Yes. Many museums allow photos without flash; the Sistine Chapel and some exhibitions don&#x27;t, so check the signs.</p></details><details><summary>Can it identify paintings I own?</summary><p>It can describe the style, likely period and similar artists, and identify well-known works and prints. It can&#x27;t confirm whether a painting is an original or estimate its value reliably — for that, see our guide on finding out if a painting is valuable.</p></details><details><summary>Which languages does it support?</summary><p>English, Turkish, French, German and Spanish.</p></details><details><summary>Is it on Android?</summary><p>Yes, on Google Play, and on the App Store for iPhone and iPad.</p></details></div></div></section>
+<section><div class="wrap"><div class="cta-band art-bg">
 <h2>Every artwork has a story</h2><p>Point, snap and read it.</p>
 <div class="ctas"><a class="badge" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-bottom-en&mt=8" rel="noopener"><img src="/assets/img/app-store-en-us.svg" alt="Download on the App Store" width="162" height="54"></a><a class="badge" href="https://play.google.com/store/apps/details?id=com.artworkidentifier&referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-bottom-en" rel="noopener"><img src="/assets/img/play-en.webp" alt="Get it on Google Play" width="164" height="54"></a></div>
 </div></div></section>

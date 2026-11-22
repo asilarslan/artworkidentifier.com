@@ -8,7 +8,7 @@ HOME = {
         "title": "Artwork Identifier: Identify Any Painting or Artwork from a Photo",
         "desc": "Point your camera at a painting, sculpture or monument and learn the artist, title, date and the story behind it. Free to try on iPhone, iPad and Android.",
         "nav": {"museums": "Museum guides", "styles": "Art styles", "tool": "Style finder", "get": "Get the app"},
-        "h1": "What's that painting? Snap it and find out.",
+        "h1": "What’s that painting? Snap it and find out.",
         "sub": "Take a photo of any painting, sculpture or monument — in a museum, a book or on a screen. Artwork Identifier tells you the artist, title and date, then the story behind it.",
         "compat": "Free to try · iPhone & iPad (iOS {min_os}+) · Android · English, Türkçe, Français, Deutsch, Español",
         "qr": "Scan with your phone camera to get the app",
@@ -284,3 +284,30 @@ HOME = {
         "museum_h1": "{n} obras imprescindibles del {name}",
     },
 }
+
+
+# Section labels, hero kicker and stats strip (numbers are filled in from the content by build.py).
+UI2 = {
+    "en": {"kicker": "Your art guide, in your pocket",
+           "eyebrow": {"museums": "Museum guides", "styles": "Art styles", "app": "The app", "how": "How it works", "guides": "Guides", "faq": "FAQ"},
+           "stats": {"museums": "museum guides", "works": "masterpieces explained", "styles": "art movements", "langs": "languages"},
+           "jump": "Jump to a work", "read_min": "{n} works · {city}", "frame_alt": "Johannes Vermeer, Girl with a Pearl Earring"},
+    "tr": {"kicker": "Cebinizdeki sanat rehberi",
+           "eyebrow": {"museums": "Müze rehberleri", "styles": "Sanat akımları", "app": "Uygulama", "how": "Nasıl çalışır", "guides": "Rehberler", "faq": "Sık sorulanlar"},
+           "stats": {"museums": "müze rehberi", "works": "başyapıt", "styles": "sanat akımı", "langs": "dil"},
+           "jump": "Esere git", "read_min": "{n} eser · {city}", "frame_alt": "Johannes Vermeer, İnci Küpeli Kız"},
+    "fr": {"kicker": "Votre guide d'art, dans votre poche",
+           "eyebrow": {"museums": "Guides de musées", "styles": "Styles", "app": "L'app", "how": "Comment ça marche", "guides": "Guides", "faq": "FAQ"},
+           "stats": {"museums": "guides de musées", "works": "chefs-d'œuvre", "styles": "mouvements artistiques", "langs": "langues"},
+           "jump": "Aller à une œuvre", "read_min": "{n} œuvres · {city}", "frame_alt": "Johannes Vermeer, La Jeune Fille à la perle"},
+    "de": {"kicker": "Dein Kunstführer für die Hosentasche",
+           "eyebrow": {"museums": "Museumsführer", "styles": "Kunststile", "app": "Die App", "how": "So funktioniert's", "guides": "Ratgeber", "faq": "FAQ"},
+           "stats": {"museums": "Museumsführer", "works": "Meisterwerke", "styles": "Kunstrichtungen", "langs": "Sprachen"},
+           "jump": "Zum Werk springen", "read_min": "{n} Werke · {city}", "frame_alt": "Johannes Vermeer, Das Mädchen mit dem Perlenohrgehänge"},
+    "es": {"kicker": "Tu guía de arte, en el bolsillo",
+           "eyebrow": {"museums": "Guías de museos", "styles": "Estilos", "app": "La app", "how": "Cómo funciona", "guides": "Guías", "faq": "Preguntas"},
+           "stats": {"museums": "guías de museos", "works": "obras maestras", "styles": "movimientos artísticos", "langs": "idiomas"},
+           "jump": "Ir a una obra", "read_min": "{n} obras · {city}", "frame_alt": "Johannes Vermeer, La joven de la perla"},
+}
+for _l, _v in UI2.items():
+    HOME[_l].update(_v)

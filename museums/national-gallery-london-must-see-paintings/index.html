@@ -26,6 +26,7 @@
 <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
 <link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>:root {
   --brand: #9a3412;
@@ -316,6 +317,120 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 .examples figcaption { text-align: left; }
 .guide-shot .device { margin: 0; }
 @media (max-width: 600px) { .guide-shot .device { margin: 0 auto; } }
+
+/* ================= gallery redesign ================= */
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 500 600; font-display: swap; src: url(/assets/fonts/fraunces-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 500 600; font-display: swap; src: url(/assets/fonts/fraunces-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+:root { --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif; --gold: #e2b866; --ink-dark: #15110f; }
+h1, h2, h3, .brand, .stats b, .wn { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; }
+h1 { font-weight: 600; }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.kick { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin-bottom: 8px; }
+.kick.light { color: var(--gold); }
+
+/* hero: a dark gallery wall with a framed painting and the phone in front */
+.hero.gallery { background: radial-gradient(ellipse 70% 80% at 75% 35%, #3b2a1f 0, #1c1512 55%, var(--ink-dark) 100%); color: #f4ede4; padding: 56px 0 64px; }
+.hero.gallery h1 { color: #fff; font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; }
+.hero.gallery .sub { color: #d8cdc0; }
+.hero.gallery .compat { color: #a89a8b; }
+.hero.gallery .qr span { color: #cbbfb2; }
+.hero.gallery .qr img { border-color: #3a2f28; }
+.stage { position: relative; height: 600px; max-width: 520px; margin-left: auto; }
+.gilt { position: absolute; right: 0; top: 0; width: 66%; margin: 0; padding: 16px; background: linear-gradient(135deg, #8a5d1c, #f1d389 22%, #a8742a 48%, #f0cd7a 72%, #7c531b);
+  box-shadow: 0 40px 80px rgba(0,0,0,.55), inset 0 0 0 2px rgba(0,0,0,.3); border-radius: 3px; }
+.gilt img { display: block; width: 100%; height: auto; border: 8px solid #1d1510; box-shadow: inset 0 0 20px rgba(0,0,0,.6); }
+.stage .device { position: absolute; left: 0; bottom: 0; width: 54%; max-width: 270px; margin: 0; }
+.hero.gallery .credit { color: #8d7f71; text-align: right; margin-top: 10px; }
+@media (max-width: 860px) {
+  .hero.gallery { padding: 32px 0 44px; }
+  .stage { height: auto; max-width: 340px; margin: 0 auto; padding-top: 40px; }
+  .gilt { width: 62%; right: -6px; top: 0; padding: 10px; }
+  .gilt img { border-width: 5px; }
+  .stage .device { position: relative; width: 70%; left: 0; }
+  .hero.gallery .credit { text-align: center; }
+}
+
+/* stats strip */
+.statbar { background: #120e0c; padding: 26px 0; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+.stats b { display: block; font-size: 2.4rem; line-height: 1; color: var(--gold); }
+.stats span { display: block; margin-top: 6px; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #bdb0a2; }
+@media (max-width: 600px) { .stats { grid-template-columns: 1fr 1fr; gap: 22px 12px; } .stats b { font-size: 2rem; } }
+
+/* cards with image labels */
+.mcard .pic { position: relative; }
+.mcard .pic img { height: 210px; transition: transform .4s; }
+.mcard:hover .pic img { transform: scale(1.04); }
+.mcard .pic { overflow: hidden; }
+.mcard .pic em { position: absolute; left: 10px; bottom: 10px; font-style: normal; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: rgba(15,11,9,.7); padding: 4px 8px; border-radius: 6px; }
+.mcard b { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; padding-top: 14px; }
+
+/* art style tiles */
+.strip a { flex: 0 0 190px; position: relative; border-radius: 14px; overflow: hidden; }
+.strip img { width: 190px; height: 250px; border-radius: 0; transition: transform .4s; }
+.strip a:hover img { transform: scale(1.05); }
+.strip span { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 40px 12px 12px; background: linear-gradient(transparent, rgba(10,8,6,.85)); color: #fff; }
+.strip span b { display: block; font-family: var(--serif); font-size: 1.05rem; }
+.strip span i { font-style: normal; font-size: .75rem; color: #d9cbbb; }
+
+/* steps & features with icons */
+.ico { width: 46px; height: 46px; padding: 11px; border-radius: 14px; background: #f5e6d3; color: var(--brand); margin-bottom: 14px; display: block; }
+.step .num { display: none; }
+.card h3 { font-size: 1.2rem; }
+
+/* closing band with a painting behind it */
+.cta-band.art-bg { background: linear-gradient(rgba(18,13,10,.80), rgba(18,13,10,.88)), url(/assets/art/starry-night.webp) center / cover; padding: 56px 28px; }
+.cta-band h2 { color: #fff; }
+
+/* museum page banner */
+.banner { position: relative; overflow: hidden; background: var(--ink-dark); color: #f4ede4; padding: 44px 0 52px; }
+.banner::before { content: ""; position: absolute; inset: -60px; background: var(--bg) center / cover; filter: blur(30px) brightness(.32) saturate(1.2); }
+.banner-in { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: center; }
+.banner h1 { color: #fff; font-size: clamp(2.1rem, 4.4vw, 3.2rem); line-height: 1.08; margin: 6px 0 14px; }
+.banner .intro { color: #ddd2c5; font-size: 1.1rem; }
+.banner .crumbs, .banner .crumbs a { color: #b9ab9c; }
+.banner-art figure.art img { max-height: 440px; width: auto; max-width: 100%; margin: 0 auto; display: block; border-radius: 3px; box-shadow: 0 30px 70px rgba(0,0,0,.6); }
+.banner-art .credit { color: #9d8f80; text-align: center; }
+@media (max-width: 860px) { .banner-in { grid-template-columns: 1fr; gap: 24px; } .banner-art figure.art img { max-height: 320px; } }
+
+/* jump-to thumbnails */
+.jump { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; }
+.jump a { flex: 0 0 128px; text-decoration: none; color: var(--ink); font-size: .82rem; font-weight: 600; line-height: 1.3; }
+.jump img { width: 128px; height: 92px; object-fit: cover; border-radius: 10px; margin-bottom: 6px; transition: transform .3s; }
+.jump a:hover img { transform: translateY(-2px); }
+
+/* works on a gallery wall */
+.works { gap: 0; }
+.work { grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; padding: 36px 0; scroll-margin-top: 80px; }
+.work:nth-child(even) .wall { order: 2; }
+.wall { background: linear-gradient(#efe9e1, #e6ded3); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; align-items: center; }
+.wall figure.art img { max-height: 380px; width: auto; max-width: 100%; border-radius: 2px; box-shadow: 0 18px 40px rgba(40,25,15,.35); }
+.wall .credit { text-align: center; margin-top: 12px; }
+.wn { display: block; width: auto; height: auto; background: none; color: var(--brand); opacity: .55; font-size: 2.4rem; line-height: 1; border-radius: 0; margin-bottom: 6px; }
+.wtext h3 { font-size: 1.7rem; display: block; margin-bottom: 4px; }
+.look { background: var(--soft); border-left: 3px solid var(--brand); padding: 14px 16px; border-radius: 10px; margin-top: 12px; }
+.look b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: 4px; }
+@media (max-width: 760px) {
+  .work { grid-template-columns: 1fr; gap: 18px; padding: 26px 0; }
+  .work:nth-child(even) .wall { order: 0; }
+  .wall { padding: 20px; }
+  .wall figure.art img { max-height: 320px; }
+}
+
+/* art movements: two columns */
+.mv { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; padding: 40px 0; margin: 0; }
+.mv:nth-of-type(even) .mvp { order: -1; }
+.mv h2 { font-size: 2rem; }
+.mv.noimg { grid-template-columns: 1fr; }
+.clue b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin: 12px 0 4px; }
+.mvp .meta { text-align: center; margin-top: 8px; }
+.mvp figure.art { background: linear-gradient(#efe9e1, #e6ded3); border-radius: 18px; padding: 26px; text-align: center; }
+.mvp figure.art img { max-height: 380px; width: auto; max-width: 100%; border-radius: 2px; box-shadow: 0 18px 40px rgba(40,25,15,.35); background: none; }
+@media (max-width: 760px) { .mv { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; } .mv:nth-of-type(even) .mvp { order: 0; } }
+.toc { position: sticky; top: 60px; z-index: 5; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); padding: 10px 0; margin: 0; overflow-x: auto; flex-wrap: nowrap; }
+.toc a { white-space: nowrap; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://artworkidentifier.com/"}, {"@type": "ListItem", "position": 2, "name": "Museum guides", "item": "https://artworkidentifier.com/museums/"}, {"@type": "ListItem", "position": 3, "name": "7 must-see artworks at the National Gallery", "item": "https://artworkidentifier.com/museums/national-gallery-london-must-see-paintings/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "7 must-see artworks at the National Gallery", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "VisualArtwork", "name": "The Arnolfini Portrait", "creator": {"@type": "Person", "name": "Jan van Eyck"}, "dateCreated": "1434", "image": "https://artworkidentifier.com/assets/art/arnolfini-portrait.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": "VisualArtwork", "name": "The Fighting Temeraire", "creator": {"@type": "Person", "name": "J. M. W. Turner"}, "dateCreated": "1839", "image": "https://artworkidentifier.com/assets/art/fighting-temeraire.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": "VisualArtwork", "name": "Sunflowers", "creator": {"@type": "Person", "name": "Vincent van Gogh"}, "dateCreated": "1888", "image": "https://artworkidentifier.com/assets/art/sunflowers.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "VisualArtwork", "name": "The Hay Wain", "creator": {"@type": "Person", "name": "John Constable"}, "dateCreated": "1821", "image": "https://artworkidentifier.com/assets/art/hay-wain.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "VisualArtwork", "name": "Bathers at Asnières", "creator": {"@type": "Person", "name": "Georges Seurat"}, "dateCreated": "1884", "image": "https://artworkidentifier.com/assets/art/bathers-at-asnieres.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "VisualArtwork", "name": "The Ambassadors", "creator": {"@type": "Person", "name": "Hans Holbein the Younger"}, "dateCreated": "1533", "image": "https://artworkidentifier.com/assets/art/the-ambassadors.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}, {"@type": "ListItem", "position": 7, "item": {"@type": "VisualArtwork", "name": "Whistlejacket", "creator": {"@type": "Person", "name": "George Stubbs"}, "dateCreated": "c. 1762", "image": "https://artworkidentifier.com/assets/art/whistlejacket.webp", "contentLocation": {"@type": "Museum", "name": "National Gallery", "address": "London"}}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "National Gallery London: 7 Must-See Artworks (and What to Look For)", "description": "The 7 artworks not to miss at the National Gallery in London: The Arnolfini Portrait, The Fighting Temeraire, Sunflowers and more, with what to look for and visit tips.", "inLanguage": "en", "dateModified": "2026-11-22", "mainEntityOfPage": "https://artworkidentifier.com/museums/national-gallery-london-must-see-paintings/", "image": "https://artworkidentifier.com/assets/art/arnolfini-portrait.webp", "author": {"@type": "Organization", "name": "Artwork Identifier", "url": "https://artworkidentifier.com/"}, "publisher": {"@type": "Organization", "name": "Artwork Identifier", "logo": {"@type": "ImageObject", "url": "https://artworkidentifier.com/assets/img/icon-512.png"}}}</script>
 </head>
@@ -330,34 +445,29 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 <a class="get" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-nav-en&mt=8" data-play="https://play.google.com/store/apps/details?id=com.artworkidentifier&amp;referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-nav-en" rel="noopener">Get the app</a>
 </nav></div></header>
 <main>
-<section class="article" data-hero><div class="wrap narrow">
-<nav class="crumbs"><a href="/">Home</a> › <a href="/museums/">Museum guides</a> › 7 must-see artworks at the National Gallery</nav>
-<h1>7 must-see artworks at the National Gallery</h1>
-<p class="intro">Free to enter and right on Trafalgar Square, the National Gallery covers European painting from the 13th to the early 20th century.</p>
-<p style="font-size:.85rem;color:var(--muted);margin-top:10px">Updated: 2026-11-22</p>
-</div></section>
-<section style="padding:8px 0 0"><div class="wrap narrow"><h2>The must-see works</h2><div class="works"><article class="work" id="arnolfini-portrait"><div class="wimg"><figure class="art"><img src="/assets/art/arnolfini-portrait.webp" alt="The Arnolfini Portrait — Jan van Eyck" width="900" height="1231" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Arnolfini_portrait_(1434).jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">1</span>The Arnolfini Portrait</h3><p class="meta">Jan van Eyck · 1434</p>
-<p><b>What to look for:</b> Lean in to the convex mirror: it reflects the whole room and two more figures standing in the doorway.</p></div></article><article class="work" id="fighting-temeraire"><div class="wimg"><figure class="art"><img src="/assets/art/fighting-temeraire.webp" alt="The Fighting Temeraire — J. M. W. Turner" width="900" height="669" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Fighting_Temeraire,_JMW_Turner,_National_Gallery.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">2</span>The Fighting Temeraire</h3><p class="meta">J. M. W. Turner · 1839</p>
-<p><b>What to look for:</b> A ghostly warship towed to the breakers by a dark steam tug at sunset: the end of the age of sail.</p></div></article><article class="work" id="sunflowers"><div class="wimg"><figure class="art"><img src="/assets/art/sunflowers.webp" alt="Sunflowers — Vincent van Gogh" width="900" height="1136" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Vincent_Willem_van_Gogh_127.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">3</span>Sunflowers</h3><p class="meta">Vincent van Gogh · 1888</p>
-<p><b>What to look for:</b> Yellow on yellow. Van Gogh painted it to decorate Gauguin&#x27;s room in Arles.</p></div></article><article class="work" id="hay-wain"><div class="wimg"><figure class="art"><img src="/assets/art/hay-wain.webp" alt="The Hay Wain — John Constable" width="900" height="621" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:John_Constable_-_The_Hay_Wain_(1821).jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">4</span>The Hay Wain</h3><p class="meta">John Constable · 1821</p>
-<p><b>What to look for:</b> A cart in the river Stour in Suffolk. Look for the white flecks of paint that make the light sparkle.</p></div></article><article class="work" id="bathers-at-asnieres"><div class="wimg"><figure class="art"><img src="/assets/art/bathers-at-asnieres.webp" alt="Bathers at Asnières — Georges Seurat" width="900" height="597" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Baigneurs_a_Asnieres.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">5</span>Bathers at Asnières</h3><p class="meta">Georges Seurat · 1884</p>
-<p><b>What to look for:</b> Seurat&#x27;s first large painting, before he fully developed pointillism. Factories smoke in the background.</p></div></article><article class="work" id="the-ambassadors"><div class="wimg"><figure class="art"><img src="/assets/art/the-ambassadors.webp" alt="The Ambassadors — Hans Holbein the Younger" width="900" height="887" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">6</span>The Ambassadors</h3><p class="meta">Hans Holbein the Younger · 1533</p>
-<p><b>What to look for:</b> Stand close to the right side and look back: the strange shape at the bottom turns into a skull.</p></div></article><article class="work" id="whistlejacket"><div class="wimg"><figure class="art"><img src="/assets/art/whistlejacket.webp" alt="Whistlejacket — George Stubbs" width="900" height="1079" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Whistlejacket_by_George_Stubbs_edit.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">7</span>Whistlejacket</h3><p class="meta">George Stubbs · c. 1762</p>
-<p><b>What to look for:</b> A life-size racehorse rearing against a plain background, with no rider and no landscape.</p></div></article></div></div></section>
+<section class="banner" data-hero style="--bg:url(/assets/art/arnolfini-portrait.webp)"><div class="wrap banner-in"><div><nav class="crumbs"><a href="/">Home</a> › <a href="/museums/">Museum guides</a> › 7 must-see artworks at the National Gallery</nav><p class="kick light">7 works · London</p><h1>7 must-see artworks at the National Gallery</h1><p class="intro">Free to enter and right on Trafalgar Square, the National Gallery covers European painting from the 13th to the early 20th century.</p></div><div class="banner-art"><figure class="art"><img src="/assets/art/arnolfini-portrait.webp" alt="The Arnolfini Portrait" width="900" height="1231" fetchpriority="high" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Arnolfini_portrait_(1434).jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div></div></section>
+<section style="padding:28px 0 0"><div class="wrap"><p class="kick">Jump to a work</p><div class="jump"><a href="#arnolfini-portrait"><img src="/assets/art/arnolfini-portrait.webp" alt="" loading="lazy"><span>The Arnolfini Portrait</span></a><a href="#fighting-temeraire"><img src="/assets/art/fighting-temeraire.webp" alt="" loading="lazy"><span>The Fighting Temeraire</span></a><a href="#sunflowers"><img src="/assets/art/sunflowers.webp" alt="" loading="lazy"><span>Sunflowers</span></a><a href="#hay-wain"><img src="/assets/art/hay-wain.webp" alt="" loading="lazy"><span>The Hay Wain</span></a><a href="#bathers-at-asnieres"><img src="/assets/art/bathers-at-asnieres.webp" alt="" loading="lazy"><span>Bathers at Asnières</span></a><a href="#the-ambassadors"><img src="/assets/art/the-ambassadors.webp" alt="" loading="lazy"><span>The Ambassadors</span></a><a href="#whistlejacket"><img src="/assets/art/whistlejacket.webp" alt="" loading="lazy"><span>Whistlejacket</span></a></div></div></section><section style="padding:24px 0 0"><div class="wrap narrow"><h2>The must-see works</h2><div class="works"><article class="work" id="arnolfini-portrait"><div class="wall"><figure class="art"><img src="/assets/art/arnolfini-portrait.webp" alt="The Arnolfini Portrait — Jan van Eyck" width="900" height="1231" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Arnolfini_portrait_(1434).jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">01</span><h3>The Arnolfini Portrait</h3><p class="meta">Jan van Eyck · 1434</p>
+<p class="look"><b>What to look for</b>Lean in to the convex mirror: it reflects the whole room and two more figures standing in the doorway.</p></div></article><article class="work" id="fighting-temeraire"><div class="wall"><figure class="art"><img src="/assets/art/fighting-temeraire.webp" alt="The Fighting Temeraire — J. M. W. Turner" width="900" height="669" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Fighting_Temeraire,_JMW_Turner,_National_Gallery.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">02</span><h3>The Fighting Temeraire</h3><p class="meta">J. M. W. Turner · 1839</p>
+<p class="look"><b>What to look for</b>A ghostly warship towed to the breakers by a dark steam tug at sunset: the end of the age of sail.</p></div></article><article class="work" id="sunflowers"><div class="wall"><figure class="art"><img src="/assets/art/sunflowers.webp" alt="Sunflowers — Vincent van Gogh" width="900" height="1136" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Vincent_Willem_van_Gogh_127.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">03</span><h3>Sunflowers</h3><p class="meta">Vincent van Gogh · 1888</p>
+<p class="look"><b>What to look for</b>Yellow on yellow. Van Gogh painted it to decorate Gauguin&#x27;s room in Arles.</p></div></article><article class="work" id="hay-wain"><div class="wall"><figure class="art"><img src="/assets/art/hay-wain.webp" alt="The Hay Wain — John Constable" width="900" height="621" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:John_Constable_-_The_Hay_Wain_(1821).jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">04</span><h3>The Hay Wain</h3><p class="meta">John Constable · 1821</p>
+<p class="look"><b>What to look for</b>A cart in the river Stour in Suffolk. Look for the white flecks of paint that make the light sparkle.</p></div></article><article class="work" id="bathers-at-asnieres"><div class="wall"><figure class="art"><img src="/assets/art/bathers-at-asnieres.webp" alt="Bathers at Asnières — Georges Seurat" width="900" height="597" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Baigneurs_a_Asnieres.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">05</span><h3>Bathers at Asnières</h3><p class="meta">Georges Seurat · 1884</p>
+<p class="look"><b>What to look for</b>Seurat&#x27;s first large painting, before he fully developed pointillism. Factories smoke in the background.</p></div></article><article class="work" id="the-ambassadors"><div class="wall"><figure class="art"><img src="/assets/art/the-ambassadors.webp" alt="The Ambassadors — Hans Holbein the Younger" width="900" height="887" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">06</span><h3>The Ambassadors</h3><p class="meta">Hans Holbein the Younger · 1533</p>
+<p class="look"><b>What to look for</b>Stand close to the right side and look back: the strange shape at the bottom turns into a skull.</p></div></article><article class="work" id="whistlejacket"><div class="wall"><figure class="art"><img src="/assets/art/whistlejacket.webp" alt="Whistlejacket — George Stubbs" width="900" height="1079" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Whistlejacket_by_George_Stubbs_edit.jpg" rel="noopener">Image: Public domain · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">07</span><h3>Whistlejacket</h3><p class="meta">George Stubbs · c. 1762</p>
+<p class="look"><b>What to look for</b>A life-size racehorse rearing against a plain background, with no rider and no landscape.</p></div></article></div></div></section>
 <section style="padding-top:24px"><div class="wrap narrow prose">
 <h2>Tips for your visit</h2><ul><li>Entry to the permanent collection is free; booking a free slot is recommended at busy times.</li><li>View The Ambassadors from the right side to see the hidden skull.</li><li>Pick up a floor plan: the gallery is a maze of rooms.</li></ul>
 <div class="inline-cta"><p>Standing in front of a work that isn&#x27;t on this list? Snap it with Artwork Identifier and read its story.</p><a class="badge" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-inline-museums-national-gallery-london-must-see-paintings&mt=8" rel="noopener"><img src="/assets/img/app-store-en-us.svg" alt="Download on the App Store" width="162" height="54"></a><a class="badge" href="https://play.google.com/store/apps/details?id=com.artworkidentifier&referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-inline-museums-national-gallery-london-must-see-paintings" rel="noopener"><img src="/assets/img/play-en.webp" alt="Get it on Google Play" width="164" height="54"></a></div>
 <div id="faq"></div>
 </div></section>
-<section class="alt"><div class="wrap"><h2>Keep exploring</h2><div class="mcards" style="margin-top:20px"><a class="mcard" href="/museums/louvre-must-see-artworks/"><img src="/assets/art/mona-lisa.webp" alt="" loading="lazy" decoding="async"><b>The Louvre · Paris</b><span>The world&#x27;s most visited museum holds tens of thousands of works on display. If you only have a few…</span></a><a class="mcard" href="/museums/musee-dorsay-must-see-artworks/"><img src="/assets/art/moulin-de-la-galette.webp" alt="" loading="lazy" decoding="async"><b>The Musée d&#x27;Orsay · Paris</b><span>Housed in a former railway station, Orsay has the world&#x27;s best-known collection of Impressionist…</span></a><a class="mcard" href="/museums/met-museum-must-see-paintings/"><img src="/assets/art/washington-crossing-the-delaware.webp" alt="" loading="lazy" decoding="async"><b>The Met · New York</b><span>The Metropolitan Museum of Art covers 5,000 years of art. These paintings are the highlights of the…</span></a><a class="mcard" href="/museums/uffizi-must-see-artworks/"><img src="/assets/art/birth-of-venus.webp" alt="" loading="lazy" decoding="async"><b>The Uffizi Gallery · Florence</b><span>The Uffizi is the place to see the Italian Renaissance, from Botticelli to Michelangelo and…</span></a><a class="mcard" href="/museums/rijksmuseum-must-see-artworks/"><img src="/assets/art/night-watch.webp" alt="" loading="lazy" decoding="async"><b>The Rijksmuseum · Amsterdam</b><span>The Dutch national museum is the place for Rembrandt and Vermeer. Most of the highlights are in and…</span></a><a class="mcard" href="/museums/prado-must-see-paintings/"><img src="/assets/art/las-meninas.webp" alt="" loading="lazy" decoding="async"><b>The Prado · Madrid</b><span>Spain&#x27;s national museum holds the greatest collections of Velázquez, Goya and Bosch…</span></a><a class="mcard" href="/museums/vatican-museums-must-see-artworks/"><img src="/assets/art/creation-of-adam.webp" alt="" loading="lazy" decoding="async"><b>The Vatican Museums · Rome</b><span>The route through the Vatican Museums ends in the Sistine Chapel, but there&#x27;s a lot to see on the…</span></a></div></div></section>
-<section><div class="wrap"><div class="cta-band">
+<section class="alt"><div class="wrap"><h2>Keep exploring</h2><div class="mcards" style="margin-top:20px"><a class="mcard" href="/museums/louvre-must-see-artworks/"><div class="pic"><img src="/assets/art/mona-lisa.webp" alt="" loading="lazy" decoding="async"></div><b>The Louvre · Paris</b><span>The world&#x27;s most visited museum holds tens of thousands of works on display. If you only have a few…</span></a><a class="mcard" href="/museums/musee-dorsay-must-see-artworks/"><div class="pic"><img src="/assets/art/moulin-de-la-galette.webp" alt="" loading="lazy" decoding="async"></div><b>The Musée d&#x27;Orsay · Paris</b><span>Housed in a former railway station, Orsay has the world&#x27;s best-known collection of Impressionist…</span></a><a class="mcard" href="/museums/met-museum-must-see-paintings/"><div class="pic"><img src="/assets/art/washington-crossing-the-delaware.webp" alt="" loading="lazy" decoding="async"></div><b>The Met · New York</b><span>The Metropolitan Museum of Art covers 5,000 years of art. These paintings are the highlights of the…</span></a><a class="mcard" href="/museums/uffizi-must-see-artworks/"><div class="pic"><img src="/assets/art/birth-of-venus.webp" alt="" loading="lazy" decoding="async"></div><b>The Uffizi Gallery · Florence</b><span>The Uffizi is the place to see the Italian Renaissance, from Botticelli to Michelangelo and…</span></a><a class="mcard" href="/museums/rijksmuseum-must-see-artworks/"><div class="pic"><img src="/assets/art/night-watch.webp" alt="" loading="lazy" decoding="async"></div><b>The Rijksmuseum · Amsterdam</b><span>The Dutch national museum is the place for Rembrandt and Vermeer. Most of the highlights are in and…</span></a><a class="mcard" href="/museums/prado-must-see-paintings/"><div class="pic"><img src="/assets/art/las-meninas.webp" alt="" loading="lazy" decoding="async"></div><b>The Prado · Madrid</b><span>Spain&#x27;s national museum holds the greatest collections of Velázquez, Goya and Bosch…</span></a><a class="mcard" href="/museums/vatican-museums-must-see-artworks/"><div class="pic"><img src="/assets/art/creation-of-adam.webp" alt="" loading="lazy" decoding="async"></div><b>The Vatican Museums · Rome</b><span>The route through the Vatican Museums ends in the Sistine Chapel, but there&#x27;s a lot to see on the…</span></a></div></div></section>
+<section><div class="wrap"><div class="cta-band art-bg">
 <h2>Every artwork has a story</h2><p>Point, snap and read it.</p>
 <div class="ctas"><a class="badge" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-bottom-museums-national-gallery-london-must-see-paintings&mt=8" rel="noopener"><img src="/assets/img/app-store-en-us.svg" alt="Download on the App Store" width="162" height="54"></a><a class="badge" href="https://play.google.com/store/apps/details?id=com.artworkidentifier&referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-bottom-museums-national-gallery-london-must-see-paintings" rel="noopener"><img src="/assets/img/play-en.webp" alt="Get it on Google Play" width="164" height="54"></a><a class="btn btn-ghost" href="/">Back to home</a></div>
 </div></div></section>

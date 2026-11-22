@@ -182,7 +182,7 @@ def sticky(lang, where):
 
 def cta_band(lang, where, extra=""):
     t = HOME[lang]
-    return f"""<section><div class="wrap"><div class="cta-band">
+    return f"""<section><div class="wrap"><div class="cta-band art-bg">
 <h2>{esc(t['cta_h2'])}</h2><p>{esc(t['cta_p'])}</p>
 <div class="ctas">{badge(t, 'web-bottom-' + where)}{extra}</div>
 </div></div></section>"""
@@ -264,6 +264,7 @@ def page(lang, title, desc, path, body, *, alternates=None, jsonld=(), preload="
 <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
 <link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 {preload}
 <style>{read('assets/site.css')}</style>
 {''.join(ld(j) for j in jsonld)}
@@ -299,8 +300,32 @@ def device(n, alt, lang, eager=False, small=False):
             f'width="645" height="1398" {load}></div>')
 
 
-def card(href, title, text, img=None):
-    pic = f'<img src="/assets/art/{img}.webp" alt="" loading="lazy" decoding="async">' if img else ""
+ICONS = {
+    "camera": '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+    "book": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/>',
+    "chat": '<path d="M4 5h16v11H8l-4 4z"/>',
+    "museum": '<path d="M3 10 12 4l9 6"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/>',
+    "plane": '<path d="M2 16l20-8-7 13-3-6z"/>',
+    "cap": '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
+    "frame": '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 16l5-5 4 4 3-3 6 6"/>',
+    "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+    "spark": '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+}
+STEP_ICONS = ["camera", "book", "chat"]
+FEATURE_ICONS = ["museum", "plane", "cap", "frame", "globe", "spark"]
+
+
+def icon(name):
+    return (f'<svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICONS[name]}</svg>')
+
+
+def eyebrow(t, key):
+    return f'<p class="kick">{esc(t["eyebrow"][key])}</p>'
+
+
+def card(href, title, text, img=None, label=""):
+    pic = f'<div class="pic"><img src="/assets/art/{img}.webp" alt="" loading="lazy" decoding="async">{f"<em>{esc(label)}</em>" if label else ""}</div>' if img else ""
     return f'<a class="mcard" href="{href}">{pic}<b>{esc(title)}</b><span>{esc(text)}</span></a>'
 
 
@@ -308,74 +333,87 @@ def museum_cards(lang):
     out = []
     for k, m in museums_in(lang):
         name = tr_(m["name"], lang)
-        out.append(card(tr_(m["paths"], lang), name[0].upper() + name[1:] + " · " + m["city"],
-                        tr_(m["intro"], lang)[:110].rsplit(" ", 1)[0] + "…", m["works"][0]))
+        out.append(card(tr_(m["paths"], lang), name[0].upper() + name[1:], tr_(m["intro"], lang)[:105].rsplit(" ", 1)[0] + "…",
+                        m["works"][0], f'{m["city"]} · {len(m["works"])}'))
     return "".join(out)
 
 
 def guide_cards(lang):
-    out = [card(g["path"], g["h1"], g["desc"][:110].rsplit(" ", 1)[0] + "…", g.get("img")) for g in guides_for(lang)]
-    out.append(card(STYLES[lang]["path"], STYLES[lang]["h1"], STYLES[lang]["desc"][:110].rsplit(" ", 1)[0] + "…", "starry-night"))
-    out.append(card(TOOL[lang]["path"], TOOL[lang]["h1"], TOOL[lang]["desc"][:110].rsplit(" ", 1)[0] + "…", "composition-vii"))
+    out = [card(g["path"], g["h1"], g["desc"][:105].rsplit(" ", 1)[0] + "…", g.get("img")) for g in guides_for(lang)]
+    out.append(card(STYLES[lang]["path"], STYLES[lang]["h1"], STYLES[lang]["desc"][:105].rsplit(" ", 1)[0] + "…", "starry-night"))
+    out.append(card(TOOL[lang]["path"], TOOL[lang]["h1"], TOOL[lang]["desc"][:105].rsplit(" ", 1)[0] + "…", "composition-vii"))
     return "".join(out)
+
+
+def stats(lang):
+    t = HOME[lang]["stats"]
+    nums = [(len(MUSEUMS), t["museums"]), (sum(1 for a in ART.values() if a["d"].get("en")), t["works"]),
+            (len(MOVEMENTS), t["styles"]), (len(LANGS), t["langs"])]
+    return '<div class="stats">' + "".join(f'<div><b>{n}</b><span>{esc(l)}</span></div>' for n, l in nums) + '</div>'
 
 
 def build_home(lang, app):
     t = HOME[lang]
     fmt = {"min_os": app["min_os"]}
     examples = "".join(
-        f'<figure>{device(i, t["shots_alt"][i - 1], lang)}'
-        f'<figcaption><b>{esc(name)}</b>{esc(why)}</figcaption></figure>' for i, name, why in t["examples"])
-    steps = "".join(f'<div class="card"><div class="num">{i}</div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>'
+        f'<figure>{device(i, t["shots_alt"][i - 1], lang)}<figcaption><b>{esc(name)}</b>{esc(why)}</figcaption></figure>'
+        for i, name, why in t["examples"])
+    steps = "".join(f'<div class="card step">{icon(STEP_ICONS[i - 1])}<div class="num">{i}</div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>'
                     for i, (a, b) in enumerate(t["steps"], 1))
-    feats = "".join(f'<div class="card"><h3>{esc(a)}</h3><p>{esc(b)}</p></div>' for a, b in t["features"])
-    strip = "".join(f'<a href="{STYLES[lang]["path"]}#{k}"><img src="/assets/art/{img}.webp" alt="{esc(tr_(n, lang))}" loading="lazy"><span>{esc(tr_(n, lang))}</span></a>'
+    feats = "".join(f'<div class="card feat">{icon(FEATURE_ICONS[i])}<h3>{esc(a)}</h3><p>{esc(b)}</p></div>'
+                    for i, (a, b) in enumerate(t["features"]))
+    strip = "".join(f'<a href="{STYLES[lang]["path"]}#{k}"><img src="/assets/art/{img}.webp" alt="{esc(tr_(n, lang))}" loading="lazy">'
+                    f'<span><b>{esc(tr_(n, lang))}</b><i>{esc(y)}</i></span></a>'
                     for k, n, y, img, c in MOVEMENTS if img)
     alts = {l: home_path(l) for l in LANGS}
     body = f"""{header(lang, alts)}
 <main>
-<section class="hero" data-hero><div class="wrap">
+<section class="hero gallery" data-hero><div class="wrap">
 <div>
+<p class="kick light">{esc(t['kicker'])}</p>
 <h1>{esc(t['h1'])}</h1>
 <p class="sub">{esc(t['sub'])}</p>
 <div class="ctas">{badge(t, 'web-hero-' + lang)}</div>
 <p class="compat">{esc(t['compat'].format(**fmt))}</p>
-<p style="margin-top:14px"><a href="{museum_hub(lang)}" style="font-weight:600">{esc(t['museums_h2'])} →</a></p>
 {qr(t['qr'])}
 </div>
-<div class="media">{device(1, t['hero_alt'], lang, eager=True)}</div>
+<div class="media"><div class="stage">
+<figure class="gilt"><img src="/assets/art/girl-with-a-pearl-earring.webp" alt="{esc(t['frame_alt'])}" width="900" height="1066"></figure>
+{device(1, t['hero_alt'], lang, eager=True)}
+</div>{credit('girl-with-a-pearl-earring', lang)}</div>
 </div></section>
+<section class="statbar"><div class="wrap">{stats(lang)}</div></section>
 
 <section><div class="wrap">
-<h2>{esc(t['museums_h2'])}</h2><p class="lead">{esc(t['museums_lead'])}</p>
+{eyebrow(t, 'museums')}<h2>{esc(t['museums_h2'])}</h2><p class="lead">{esc(t['museums_lead'])}</p>
 <div class="mcards">{museum_cards(lang)}</div>
 </div></section>
 
 <section class="alt"><div class="wrap">
-<h2>{esc(t['styles_h2'])}</h2><p class="lead">{esc(t['styles_lead'])}</p>
+{eyebrow(t, 'styles')}<h2>{esc(t['styles_h2'])}</h2><p class="lead">{esc(t['styles_lead'])}</p>
 <div class="strip">{strip}</div>
 <div class="ctas"><a class="btn btn-primary" href="{STYLES[lang]['path']}">{esc(t['styles_btn'])}</a>
 <a class="btn btn-ghost" href="{TOOL[lang]['path']}">{esc(t['tool_btn'])}</a></div>
 </div></section>
 
 <section><div class="wrap">
-<h2>{esc(t['examples_h2'])}</h2><p class="lead">{esc(t['examples_lead'])}</p>
+{eyebrow(t, 'app')}<h2>{esc(t['examples_h2'])}</h2><p class="lead">{esc(t['examples_lead'])}</p>
 <div class="examples">{examples}</div>
 </div></section>
 
 <section id="how" class="alt"><div class="wrap">
-<h2>{esc(t['how_h2'])}</h2>
+{eyebrow(t, 'how')}<h2>{esc(t['how_h2'])}</h2>
 <div class="grid3" style="margin-top:24px">{steps}</div>
-<h2 style="margin-top:56px">{esc(t['features_h2'])}</h2>
+<h2 style="margin-top:64px">{esc(t['features_h2'])}</h2>
 <div class="grid3" style="margin-top:24px">{feats}</div>
 </div></section>
 
 <section><div class="wrap">
-<h2>{esc(t['guides_h2'])}</h2>
+{eyebrow(t, 'guides')}<h2>{esc(t['guides_h2'])}</h2>
 <div class="mcards" style="margin-top:20px">{guide_cards(lang)}</div>
 </div></section>
 
-<section id="faq" class="alt"><div class="wrap narrow">{faq_html(t['faq_h2'], t['faq'])}</div></section>
+<section id="faq" class="alt"><div class="wrap narrow">{eyebrow(t, 'faq')}{faq_html(t['faq_h2'], t['faq'])}</div></section>
 {cta_band(lang, lang)}
 </main>
 {footer(lang)}
@@ -388,7 +426,7 @@ def build_home(lang, app):
 
 
 def article(lang, *, path, title, desc, h1, intro, body_html, faq, alts, crumb, kind, top="", hero=None, shot=None,
-            tool=False, extra_ld=(), related="", og=None):
+            tool=False, extra_ld=(), related="", og=None, banner=None):
     t = HOME[lang]
     where = slug(path)
     crumbs = (f'<nav class="crumbs"><a href="{home_path(lang)}">{t["home"]}</a> › '
@@ -400,14 +438,17 @@ def article(lang, *, path, title, desc, h1, intro, body_html, faq, alts, crumb, 
                      f'<div><p>{esc(t["shot_cta"])}</p>{badge(t, "web-shot-" + where)}</div></div>')
     updated = f'<p style="font-size:.85rem;color:var(--muted);margin-top:10px">{t["updated"]}: {TODAY}</p>' if kind == "guide" else ""
     hero_html = f'<div class="wrap narrow" style="margin-top:18px">{art_img(hero, tr_(ART[hero]["t"], lang), lang, eager=True, cls="wide")}</div>' if hero else ""
+    if banner:
+        bkey, meta = banner
+        head = (f'<section class="banner" data-hero style="--bg:url(/assets/art/{bkey}.webp)"><div class="wrap banner-in">'
+                f'<div>{crumbs}<p class="kick light">{esc(meta)}</p><h1>{esc(h1)}</h1><p class="intro">{esc(intro)}</p></div>'
+                f'<div class="banner-art">{art_img(bkey, tr_(ART[bkey]["t"], lang), lang, eager=True)}</div></div></section>')
+    else:
+        head = (f'<section class="article" data-hero><div class="wrap narrow">{crumbs}<h1>{esc(h1)}</h1>'
+                f'<p class="intro">{esc(intro)}</p>{updated}</div>{hero_html}</section>')
     body = f"""{header(lang, alts)}
 <main>
-<section class="article" data-hero><div class="wrap narrow">
-{crumbs}
-<h1>{esc(h1)}</h1>
-<p class="intro">{esc(intro)}</p>
-{updated}
-</div>{hero_html}</section>
+{head}
 {top}
 <section style="padding-top:24px"><div class="wrap narrow prose">
 {body_html}
@@ -463,11 +504,14 @@ def build_museum(key, lang):
     for i, w in enumerate(m["works"], 1):
         a = ART[w]
         title_ = tr_(a["t"], lang)
-        items.append(f"""<article class="work" id="{w}"><div class="wimg">{art_img(w, f"{title_} — {a['artist']}", lang)}</div>
-<div><h3><span class="wn">{i}</span>{esc(title_)}</h3><p class="meta">{esc(a['artist'])} · {esc(a['year'])}</p>
-<p><b>{t['look']}:</b> {esc(tr_(a['d'], lang))}</p></div></article>""")
+        items.append(f"""<article class="work" id="{w}"><div class="wall">{art_img(w, f"{title_} — {a['artist']}", lang)}</div>
+<div class="wtext"><span class="wn">{i:02d}</span><h3>{esc(title_)}</h3><p class="meta">{esc(a['artist'])} · {esc(a['year'])}</p>
+<p class="look"><b>{t['look']}</b>{esc(tr_(a['d'], lang))}</p></div></article>""")
     tips = "".join(f"<li>{esc(x)}</li>" for x in tr_(m["tips"], lang))
-    top = f'<section style="padding:8px 0 0"><div class="wrap narrow"><h2>{t["list_h2"]}</h2><div class="works">{"".join(items)}</div></div></section>'
+    jump = "".join(f'<a href="#{w}"><img src="/assets/art/{w}.webp" alt="" loading="lazy"><span>{esc(tr_(ART[w]["t"], lang))}</span></a>'
+                   for w in m["works"])
+    top = (f'<section style="padding:28px 0 0"><div class="wrap"><p class="kick">{esc(t["jump"])}</p><div class="jump">{jump}</div></div></section>'
+           f'<section style="padding:24px 0 0"><div class="wrap narrow"><h2>{t["list_h2"]}</h2><div class="works">{"".join(items)}</div></div></section>')
     body_html = f'<h2>{t["tips_h2"]}</h2><ul>{tips}</ul>'
     alts = dict(m["paths"])
     ld_list = {"@context": "https://schema.org", "@type": "ItemList", "name": t["museum_h1"].format(n=n, name=name),
@@ -476,7 +520,8 @@ def build_museum(key, lang):
             desc=t["museum_desc"].format(n=n, name=name, city=m["city"], works=first),
             h1=t["museum_h1"].format(n=n, name=name if not t["museum_h1"].startswith("{name}") else Name),
             intro=tr_(m["intro"], lang), body_html=body_html, faq=None, alts=alts, crumb=(t["museums_hub"], museum_hub(lang)),
-            kind="guide", top=top, og=m["works"][0], extra_ld=[ld_list], related=related_museums(lang, key))
+            kind="guide", top=top, og=m["works"][0], extra_ld=[ld_list], related=related_museums(lang, key),
+            banner=(m["works"][0], t["read_min"].format(n=n, city=m["city"])))
 
 
 def build_museum_hub(lang):
@@ -510,13 +555,14 @@ def build_styles(lang):
         if img:
             a = ART[img]
             pic = f'{art_img(img, tr_(a["t"], lang), lang)}<p class="meta">{s["example"]}: <i>{esc(tr_(a["t"], lang))}</i>, {esc(a["artist"])}, {esc(a["year"])}</p>'
-        secs.append(f'<section class="mv" id="{k}"><h2>{esc(tr_(n, lang))}</h2><p class="meta">{s["years"]}: {esc(y)}</p>'
-                    f'<p><b>{s["clue"]}:</b> {esc(tr_(c, lang))}</p>{pic}</section>')
-    top = f'<section style="padding:8px 0 0"><div class="wrap narrow"><nav class="toc">{toc}</nav>{"".join(secs)}</div></section>'
+        secs.append(f'<section class="mv{"" if img else " noimg"}" id="{k}"><div class="mvt"><p class="kick">{esc(y)}</p>'
+                    f'<h2>{esc(tr_(n, lang))}</h2><p class="clue"><b>{s["clue"]}</b>{esc(tr_(c, lang))}</p></div>'
+                    f'<div class="mvp">{pic}</div></section>')
+    top = f'<section style="padding:8px 0 0"><div class="wrap"><nav class="toc">{toc}</nav>{"".join(secs)}</div></section>'
     article(lang, path=s["path"], title=s["title"], desc=s["desc"], h1=s["h1"], intro=s["intro"],
             body_html=f'<p><a href="{TOOL[lang]["path"]}">{esc(TOOL[lang]["h1"])} →</a></p>', faq=None,
-            alts={l: STYLES[l]["path"] for l in LANGS}, crumb=None, kind="guide", top=top, hero=None,
-            related=related_museums(lang))
+            alts={l: STYLES[l]["path"] for l in LANGS}, crumb=None, kind="guide", top=top, og="starry-night",
+            related=related_museums(lang), banner=("starry-night", HOME[lang]["eyebrow"]["styles"]))
 
 
 def build_tool(lang):
@@ -545,15 +591,16 @@ def build_tool(lang):
               "isAccessibleForFree": True, "inLanguage": lang, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     article(lang, path=tt["path"], title=tt["title"], desc=tt["desc"], h1=tt["h1"], intro=tt["intro"], body_html=tt["body"],
             faq=tt["faq"], alts={l: TOOL[l]["path"] for l in LANGS}, crumb=None, kind="tool", top=top, tool=True,
-            extra_ld=[ld_app], related=related_museums(lang))
+            extra_ld=[ld_app], related=related_museums(lang), og="composition-vii",
+            banner=("composition-vii", HOME[lang]["eyebrow"]["styles"]))
 
 
 def build_guide(g):
     lang = g["lang"]
     t = HOME[lang]
     article(lang, path=g["path"], title=g["title"], desc=g["desc"], h1=g["h1"], intro=g["intro"], body_html=g["body"],
-            faq=g["faq"], alts=guide_alts(g), crumb=None, kind="guide", hero=g.get("img"), shot=g.get("shot"),
-            related=related_museums(lang))
+            faq=g["faq"], alts=guide_alts(g), crumb=None, kind="guide", og=g.get("img"), shot=g.get("shot"),
+            related=related_museums(lang), banner=(g["img"], t["eyebrow"]["guides"]) if g.get("img") else None)
 
 
 def build_get():

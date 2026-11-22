@@ -26,6 +26,7 @@
 <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
 <link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>:root {
   --brand: #9a3412;
@@ -316,6 +317,120 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 .examples figcaption { text-align: left; }
 .guide-shot .device { margin: 0; }
 @media (max-width: 600px) { .guide-shot .device { margin: 0 auto; } }
+
+/* ================= gallery redesign ================= */
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 500 600; font-display: swap; src: url(/assets/fonts/fraunces-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 500 600; font-display: swap; src: url(/assets/fonts/fraunces-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+:root { --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif; --gold: #e2b866; --ink-dark: #15110f; }
+h1, h2, h3, .brand, .stats b, .wn { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; }
+h1 { font-weight: 600; }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.kick { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin-bottom: 8px; }
+.kick.light { color: var(--gold); }
+
+/* hero: a dark gallery wall with a framed painting and the phone in front */
+.hero.gallery { background: radial-gradient(ellipse 70% 80% at 75% 35%, #3b2a1f 0, #1c1512 55%, var(--ink-dark) 100%); color: #f4ede4; padding: 56px 0 64px; }
+.hero.gallery h1 { color: #fff; font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; }
+.hero.gallery .sub { color: #d8cdc0; }
+.hero.gallery .compat { color: #a89a8b; }
+.hero.gallery .qr span { color: #cbbfb2; }
+.hero.gallery .qr img { border-color: #3a2f28; }
+.stage { position: relative; height: 600px; max-width: 520px; margin-left: auto; }
+.gilt { position: absolute; right: 0; top: 0; width: 66%; margin: 0; padding: 16px; background: linear-gradient(135deg, #8a5d1c, #f1d389 22%, #a8742a 48%, #f0cd7a 72%, #7c531b);
+  box-shadow: 0 40px 80px rgba(0,0,0,.55), inset 0 0 0 2px rgba(0,0,0,.3); border-radius: 3px; }
+.gilt img { display: block; width: 100%; height: auto; border: 8px solid #1d1510; box-shadow: inset 0 0 20px rgba(0,0,0,.6); }
+.stage .device { position: absolute; left: 0; bottom: 0; width: 54%; max-width: 270px; margin: 0; }
+.hero.gallery .credit { color: #8d7f71; text-align: right; margin-top: 10px; }
+@media (max-width: 860px) {
+  .hero.gallery { padding: 32px 0 44px; }
+  .stage { height: auto; max-width: 340px; margin: 0 auto; padding-top: 40px; }
+  .gilt { width: 62%; right: -6px; top: 0; padding: 10px; }
+  .gilt img { border-width: 5px; }
+  .stage .device { position: relative; width: 70%; left: 0; }
+  .hero.gallery .credit { text-align: center; }
+}
+
+/* stats strip */
+.statbar { background: #120e0c; padding: 26px 0; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+.stats b { display: block; font-size: 2.4rem; line-height: 1; color: var(--gold); }
+.stats span { display: block; margin-top: 6px; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #bdb0a2; }
+@media (max-width: 600px) { .stats { grid-template-columns: 1fr 1fr; gap: 22px 12px; } .stats b { font-size: 2rem; } }
+
+/* cards with image labels */
+.mcard .pic { position: relative; }
+.mcard .pic img { height: 210px; transition: transform .4s; }
+.mcard:hover .pic img { transform: scale(1.04); }
+.mcard .pic { overflow: hidden; }
+.mcard .pic em { position: absolute; left: 10px; bottom: 10px; font-style: normal; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: rgba(15,11,9,.7); padding: 4px 8px; border-radius: 6px; }
+.mcard b { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; padding-top: 14px; }
+
+/* art style tiles */
+.strip a { flex: 0 0 190px; position: relative; border-radius: 14px; overflow: hidden; }
+.strip img { width: 190px; height: 250px; border-radius: 0; transition: transform .4s; }
+.strip a:hover img { transform: scale(1.05); }
+.strip span { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 40px 12px 12px; background: linear-gradient(transparent, rgba(10,8,6,.85)); color: #fff; }
+.strip span b { display: block; font-family: var(--serif); font-size: 1.05rem; }
+.strip span i { font-style: normal; font-size: .75rem; color: #d9cbbb; }
+
+/* steps & features with icons */
+.ico { width: 46px; height: 46px; padding: 11px; border-radius: 14px; background: #f5e6d3; color: var(--brand); margin-bottom: 14px; display: block; }
+.step .num { display: none; }
+.card h3 { font-size: 1.2rem; }
+
+/* closing band with a painting behind it */
+.cta-band.art-bg { background: linear-gradient(rgba(18,13,10,.80), rgba(18,13,10,.88)), url(/assets/art/starry-night.webp) center / cover; padding: 56px 28px; }
+.cta-band h2 { color: #fff; }
+
+/* museum page banner */
+.banner { position: relative; overflow: hidden; background: var(--ink-dark); color: #f4ede4; padding: 44px 0 52px; }
+.banner::before { content: ""; position: absolute; inset: -60px; background: var(--bg) center / cover; filter: blur(30px) brightness(.32) saturate(1.2); }
+.banner-in { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: center; }
+.banner h1 { color: #fff; font-size: clamp(2.1rem, 4.4vw, 3.2rem); line-height: 1.08; margin: 6px 0 14px; }
+.banner .intro { color: #ddd2c5; font-size: 1.1rem; }
+.banner .crumbs, .banner .crumbs a { color: #b9ab9c; }
+.banner-art figure.art img { max-height: 440px; width: auto; max-width: 100%; margin: 0 auto; display: block; border-radius: 3px; box-shadow: 0 30px 70px rgba(0,0,0,.6); }
+.banner-art .credit { color: #9d8f80; text-align: center; }
+@media (max-width: 860px) { .banner-in { grid-template-columns: 1fr; gap: 24px; } .banner-art figure.art img { max-height: 320px; } }
+
+/* jump-to thumbnails */
+.jump { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; }
+.jump a { flex: 0 0 128px; text-decoration: none; color: var(--ink); font-size: .82rem; font-weight: 600; line-height: 1.3; }
+.jump img { width: 128px; height: 92px; object-fit: cover; border-radius: 10px; margin-bottom: 6px; transition: transform .3s; }
+.jump a:hover img { transform: translateY(-2px); }
+
+/* works on a gallery wall */
+.works { gap: 0; }
+.work { grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; padding: 36px 0; scroll-margin-top: 80px; }
+.work:nth-child(even) .wall { order: 2; }
+.wall { background: linear-gradient(#efe9e1, #e6ded3); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; align-items: center; }
+.wall figure.art img { max-height: 380px; width: auto; max-width: 100%; border-radius: 2px; box-shadow: 0 18px 40px rgba(40,25,15,.35); }
+.wall .credit { text-align: center; margin-top: 12px; }
+.wn { display: block; width: auto; height: auto; background: none; color: var(--brand); opacity: .55; font-size: 2.4rem; line-height: 1; border-radius: 0; margin-bottom: 6px; }
+.wtext h3 { font-size: 1.7rem; display: block; margin-bottom: 4px; }
+.look { background: var(--soft); border-left: 3px solid var(--brand); padding: 14px 16px; border-radius: 10px; margin-top: 12px; }
+.look b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: 4px; }
+@media (max-width: 760px) {
+  .work { grid-template-columns: 1fr; gap: 18px; padding: 26px 0; }
+  .work:nth-child(even) .wall { order: 0; }
+  .wall { padding: 20px; }
+  .wall figure.art img { max-height: 320px; }
+}
+
+/* art movements: two columns */
+.mv { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; padding: 40px 0; margin: 0; }
+.mv:nth-of-type(even) .mvp { order: -1; }
+.mv h2 { font-size: 2rem; }
+.mv.noimg { grid-template-columns: 1fr; }
+.clue b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin: 12px 0 4px; }
+.mvp .meta { text-align: center; margin-top: 8px; }
+.mvp figure.art { background: linear-gradient(#efe9e1, #e6ded3); border-radius: 18px; padding: 26px; text-align: center; }
+.mvp figure.art img { max-height: 380px; width: auto; max-width: 100%; border-radius: 2px; box-shadow: 0 18px 40px rgba(40,25,15,.35); background: none; }
+@media (max-width: 760px) { .mv { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; } .mv:nth-of-type(even) .mvp { order: 0; } }
+.toc { position: sticky; top: 60px; z-index: 5; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); padding: 10px 0; margin: 0; overflow-x: auto; flex-wrap: nowrap; }
+.toc a { white-space: nowrap; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://artworkidentifier.com/es/"}, {"@type": "ListItem", "position": 2, "name": "Guías de museos", "item": "https://artworkidentifier.com/es/museos/"}, {"@type": "ListItem", "position": 3, "name": "7 obras imprescindibles del Museo del Prado", "item": "https://artworkidentifier.com/es/museos/obras-imprescindibles-museo-del-prado/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "7 obras imprescindibles del Museo del Prado", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "VisualArtwork", "name": "Las meninas", "creator": {"@type": "Person", "name": "Diego Velázquez"}, "dateCreated": "1656", "image": "https://artworkidentifier.com/assets/art/las-meninas.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": "VisualArtwork", "name": "El jardín de las delicias", "creator": {"@type": "Person", "name": "Hieronymus Bosch"}, "dateCreated": "c. 1490–1510", "image": "https://artworkidentifier.com/assets/art/garden-of-earthly-delights.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": "VisualArtwork", "name": "El 3 de mayo en Madrid (Los fusilamientos)", "creator": {"@type": "Person", "name": "Francisco Goya"}, "dateCreated": "1814", "image": "https://artworkidentifier.com/assets/art/third-of-may-1808.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "VisualArtwork", "name": "Saturno devorando a un hijo", "creator": {"@type": "Person", "name": "Francisco Goya"}, "dateCreated": "c. 1819–1823", "image": "https://artworkidentifier.com/assets/art/saturn.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "VisualArtwork", "name": "El Descendimiento", "creator": {"@type": "Person", "name": "Rogier van der Weyden"}, "dateCreated": "c. 1435", "image": "https://artworkidentifier.com/assets/art/descent-from-the-cross.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "VisualArtwork", "name": "El caballero de la mano en el pecho", "creator": {"@type": "Person", "name": "El Greco"}, "dateCreated": "c. 1580", "image": "https://artworkidentifier.com/assets/art/nobleman-hand-on-chest.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}, {"@type": "ListItem", "position": 7, "item": {"@type": "VisualArtwork", "name": "Las tres Gracias", "creator": {"@type": "Person", "name": "Peter Paul Rubens"}, "dateCreated": "c. 1635", "image": "https://artworkidentifier.com/assets/art/three-graces.webp", "contentLocation": {"@type": "Museum", "name": "Prado", "address": "Madrid"}}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Museo del Prado: 7 obras imprescindibles y dónde verlas", "description": "Las 7 obras que no te puedes perder en el Museo del Prado (Madrid): Las meninas, El jardín de las delicias, El 3 de mayo en Madrid (Los fusilamientos) y más, con consejos para la visita.", "inLanguage": "es", "dateModified": "2026-11-22", "mainEntityOfPage": "https://artworkidentifier.com/es/museos/obras-imprescindibles-museo-del-prado/", "image": "https://artworkidentifier.com/assets/art/las-meninas.webp", "author": {"@type": "Organization", "name": "Artwork Identifier", "url": "https://artworkidentifier.com/"}, "publisher": {"@type": "Organization", "name": "Artwork Identifier", "logo": {"@type": "ImageObject", "url": "https://artworkidentifier.com/assets/img/icon-512.png"}}}</script>
 </head>
@@ -330,34 +445,29 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 <a class="get" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-nav-es&mt=8" data-play="https://play.google.com/store/apps/details?id=com.artworkidentifier&amp;referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-nav-es" rel="noopener">Descargar</a>
 </nav></div></header>
 <main>
-<section class="article" data-hero><div class="wrap narrow">
-<nav class="crumbs"><a href="/es/">Inicio</a> › <a href="/es/museos/">Guías de museos</a> › 7 obras imprescindibles del Museo del Prado</nav>
-<h1>7 obras imprescindibles del Museo del Prado</h1>
-<p class="intro">El museo nacional de España reúne las mayores colecciones de Velázquez, Goya y El Bosco del mundo.</p>
-<p style="font-size:.85rem;color:var(--muted);margin-top:10px">Actualizado: 2026-11-22</p>
-</div></section>
-<section style="padding:8px 0 0"><div class="wrap narrow"><h2>Las obras imprescindibles</h2><div class="works"><article class="work" id="las-meninas"><div class="wimg"><figure class="art"><img src="/assets/art/las-meninas.webp" alt="Las meninas — Diego Velázquez" width="900" height="1036" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Vel%C3%A1zquez,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">1</span>Las meninas</h3><p class="meta">Diego Velázquez · 1656</p>
-<p><b>En qué fijarse:</b> Velázquez se pinta ante el caballete; los reyes solo aparecen en el espejo. Aléjate y pregúntate quién mira a quién.</p></div></article><article class="work" id="garden-of-earthly-delights"><div class="wimg"><figure class="art"><img src="/assets/art/garden-of-earthly-delights.webp" alt="El jardín de las delicias — Hieronymus Bosch" width="900" height="512" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Garden_of_earthly_delights.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">2</span>El jardín de las delicias</h3><p class="meta">Hieronymus Bosch · c. 1490–1510</p>
-<p><b>En qué fijarse:</b> Un tríptico: paraíso, placeres terrenales e infierno. Ten paciencia con sus cientos de detalles extraños.</p></div></article><article class="work" id="third-of-may-1808"><div class="wimg"><figure class="art"><img src="/assets/art/third-of-may-1808.webp" alt="El 3 de mayo en Madrid (Los fusilamientos) — Francisco Goya" width="900" height="695" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:El_Tres_de_Mayo,_by_Francisco_de_Goya,_from_Prado_thin_black_margin.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">3</span>El 3 de mayo en Madrid (Los fusilamientos)</h3><p class="meta">Francisco Goya · 1814</p>
-<p><b>En qué fijarse:</b> Soldados sin rostro fusilan a civiles; el farol ilumina a un hombre con los brazos abiertos como un mártir.</p></div></article><article class="work" id="saturn"><div class="wimg"><figure class="art"><img src="/assets/art/saturn.webp" alt="Saturno devorando a un hijo — Francisco Goya" width="900" height="1653" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">4</span>Saturno devorando a un hijo</h3><p class="meta">Francisco Goya · c. 1819–1823</p>
-<p><b>En qué fijarse:</b> Una de las Pinturas negras, pintadas en los muros de la casa de Goya y trasladadas después a lienzo.</p></div></article><article class="work" id="descent-from-the-cross"><div class="wimg"><figure class="art"><img src="/assets/art/descent-from-the-cross.webp" alt="El Descendimiento — Rogier van der Weyden" width="900" height="698" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:El_Descendimiento,_by_Rogier_van_der_Weyden,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">5</span>El Descendimiento</h3><p class="meta">Rogier van der Weyden · c. 1435</p>
-<p><b>En qué fijarse:</b> Las figuras se apiñan en una caja dorada poco profunda, como escultura pintada. El desmayo de la Virgen repite el cuerpo de Cristo.</p></div></article><article class="work" id="nobleman-hand-on-chest"><div class="wimg"><figure class="art"><img src="/assets/art/nobleman-hand-on-chest.webp" alt="El caballero de la mano en el pecho — El Greco" width="900" height="1141" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:El_caballero_de_la_mano_en_el_pecho.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">6</span>El caballero de la mano en el pecho</h3><p class="meta">El Greco · c. 1580</p>
-<p><b>En qué fijarse:</b> Retrato temprano de El Greco en España: rostro pálido, mano en el pecho y la empuñadura de la espada apenas visible.</p></div></article><article class="work" id="three-graces"><div class="wimg"><figure class="art"><img src="/assets/art/three-graces.webp" alt="Las tres Gracias — Peter Paul Rubens" width="900" height="1097" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Three_Graces,_by_Peter_Paul_Rubens,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
-<div><h3><span class="wn">7</span>Las tres Gracias</h3><p class="meta">Peter Paul Rubens · c. 1635</p>
-<p><b>En qué fijarse:</b> Un Rubens tardío que el pintor conservó. Sus figuras redondeadas dieron origen al adjetivo “rubeniano”.</p></div></article></div></div></section>
+<section class="banner" data-hero style="--bg:url(/assets/art/las-meninas.webp)"><div class="wrap banner-in"><div><nav class="crumbs"><a href="/es/">Inicio</a> › <a href="/es/museos/">Guías de museos</a> › 7 obras imprescindibles del Museo del Prado</nav><p class="kick light">7 obras · Madrid</p><h1>7 obras imprescindibles del Museo del Prado</h1><p class="intro">El museo nacional de España reúne las mayores colecciones de Velázquez, Goya y El Bosco del mundo.</p></div><div class="banner-art"><figure class="art"><img src="/assets/art/las-meninas.webp" alt="Las meninas" width="900" height="1036" fetchpriority="high" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Vel%C3%A1zquez,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div></div></section>
+<section style="padding:28px 0 0"><div class="wrap"><p class="kick">Ir a una obra</p><div class="jump"><a href="#las-meninas"><img src="/assets/art/las-meninas.webp" alt="" loading="lazy"><span>Las meninas</span></a><a href="#garden-of-earthly-delights"><img src="/assets/art/garden-of-earthly-delights.webp" alt="" loading="lazy"><span>El jardín de las delicias</span></a><a href="#third-of-may-1808"><img src="/assets/art/third-of-may-1808.webp" alt="" loading="lazy"><span>El 3 de mayo en Madrid (Los fusilamientos)</span></a><a href="#saturn"><img src="/assets/art/saturn.webp" alt="" loading="lazy"><span>Saturno devorando a un hijo</span></a><a href="#descent-from-the-cross"><img src="/assets/art/descent-from-the-cross.webp" alt="" loading="lazy"><span>El Descendimiento</span></a><a href="#nobleman-hand-on-chest"><img src="/assets/art/nobleman-hand-on-chest.webp" alt="" loading="lazy"><span>El caballero de la mano en el pecho</span></a><a href="#three-graces"><img src="/assets/art/three-graces.webp" alt="" loading="lazy"><span>Las tres Gracias</span></a></div></div></section><section style="padding:24px 0 0"><div class="wrap narrow"><h2>Las obras imprescindibles</h2><div class="works"><article class="work" id="las-meninas"><div class="wall"><figure class="art"><img src="/assets/art/las-meninas.webp" alt="Las meninas — Diego Velázquez" width="900" height="1036" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Vel%C3%A1zquez,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">01</span><h3>Las meninas</h3><p class="meta">Diego Velázquez · 1656</p>
+<p class="look"><b>En qué fijarse</b>Velázquez se pinta ante el caballete; los reyes solo aparecen en el espejo. Aléjate y pregúntate quién mira a quién.</p></div></article><article class="work" id="garden-of-earthly-delights"><div class="wall"><figure class="art"><img src="/assets/art/garden-of-earthly-delights.webp" alt="El jardín de las delicias — Hieronymus Bosch" width="900" height="512" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Garden_of_earthly_delights.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">02</span><h3>El jardín de las delicias</h3><p class="meta">Hieronymus Bosch · c. 1490–1510</p>
+<p class="look"><b>En qué fijarse</b>Un tríptico: paraíso, placeres terrenales e infierno. Ten paciencia con sus cientos de detalles extraños.</p></div></article><article class="work" id="third-of-may-1808"><div class="wall"><figure class="art"><img src="/assets/art/third-of-may-1808.webp" alt="El 3 de mayo en Madrid (Los fusilamientos) — Francisco Goya" width="900" height="695" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:El_Tres_de_Mayo,_by_Francisco_de_Goya,_from_Prado_thin_black_margin.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">03</span><h3>El 3 de mayo en Madrid (Los fusilamientos)</h3><p class="meta">Francisco Goya · 1814</p>
+<p class="look"><b>En qué fijarse</b>Soldados sin rostro fusilan a civiles; el farol ilumina a un hombre con los brazos abiertos como un mártir.</p></div></article><article class="work" id="saturn"><div class="wall"><figure class="art"><img src="/assets/art/saturn.webp" alt="Saturno devorando a un hijo — Francisco Goya" width="900" height="1653" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">04</span><h3>Saturno devorando a un hijo</h3><p class="meta">Francisco Goya · c. 1819–1823</p>
+<p class="look"><b>En qué fijarse</b>Una de las Pinturas negras, pintadas en los muros de la casa de Goya y trasladadas después a lienzo.</p></div></article><article class="work" id="descent-from-the-cross"><div class="wall"><figure class="art"><img src="/assets/art/descent-from-the-cross.webp" alt="El Descendimiento — Rogier van der Weyden" width="900" height="698" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:El_Descendimiento,_by_Rogier_van_der_Weyden,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">05</span><h3>El Descendimiento</h3><p class="meta">Rogier van der Weyden · c. 1435</p>
+<p class="look"><b>En qué fijarse</b>Las figuras se apiñan en una caja dorada poco profunda, como escultura pintada. El desmayo de la Virgen repite el cuerpo de Cristo.</p></div></article><article class="work" id="nobleman-hand-on-chest"><div class="wall"><figure class="art"><img src="/assets/art/nobleman-hand-on-chest.webp" alt="El caballero de la mano en el pecho — El Greco" width="900" height="1141" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:El_caballero_de_la_mano_en_el_pecho.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">06</span><h3>El caballero de la mano en el pecho</h3><p class="meta">El Greco · c. 1580</p>
+<p class="look"><b>En qué fijarse</b>Retrato temprano de El Greco en España: rostro pálido, mano en el pecho y la empuñadura de la espada apenas visible.</p></div></article><article class="work" id="three-graces"><div class="wall"><figure class="art"><img src="/assets/art/three-graces.webp" alt="Las tres Gracias — Peter Paul Rubens" width="900" height="1097" loading="lazy" decoding="async"><a class="credit" href="https://commons.wikimedia.org/wiki/File:The_Three_Graces,_by_Peter_Paul_Rubens,_from_Prado_in_Google_Earth.jpg" rel="noopener">Imagen: Dominio público · Wikimedia Commons</a></figure></div>
+<div class="wtext"><span class="wn">07</span><h3>Las tres Gracias</h3><p class="meta">Peter Paul Rubens · c. 1635</p>
+<p class="look"><b>En qué fijarse</b>Un Rubens tardío que el pintor conservó. Sus figuras redondeadas dieron origen al adjetivo “rubeniano”.</p></div></article></div></div></section>
 <section style="padding-top:24px"><div class="wrap narrow prose">
 <h2>Consejos para la visita</h2><ul><li>El Prado ofrece entrada gratuita en las últimas horas de casi todos los días; consulta los horarios en su web.</li><li>Las Pinturas negras de Goya tienen sala propia; resérvales tiempo.</li><li>No se permite hacer fotos en las salas.</li></ul>
 <div class="inline-cta"><p>¿Ante una obra que no está en la lista? Fotografíala con Artwork Identifier.</p><a class="badge" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-inline-es-museos-obras-imprescindibles-museo-del-prado&mt=8" rel="noopener"><img src="/assets/img/app-store-es-es.svg" alt="Download on the App Store" width="162" height="54"></a><a class="badge" href="https://play.google.com/store/apps/details?id=com.artworkidentifier&referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-inline-es-museos-obras-imprescindibles-museo-del-prado" rel="noopener"><img src="/assets/img/play-es.webp" alt="Get it on Google Play" width="180" height="54"></a></div>
 <div id="faq"></div>
 </div></section>
 <section class="alt"><div class="wrap"><h2>Sigue explorando</h2><div class="mcards" style="margin-top:20px"></div></div></section>
-<section><div class="wrap"><div class="cta-band">
+<section><div class="wrap"><div class="cta-band art-bg">
 <h2>Cada obra tiene una historia</h2><p>Apunta, fotografía y léela.</p>
 <div class="ctas"><a class="badge" href="https://apps.apple.com/app/apple-store/id6642639717?ct=web-bottom-es-museos-obras-imprescindibles-museo-del-prado&mt=8" rel="noopener"><img src="/assets/img/app-store-es-es.svg" alt="Download on the App Store" width="162" height="54"></a><a class="badge" href="https://play.google.com/store/apps/details?id=com.artworkidentifier&referrer=utm_source%3Dartworkidentifier.com%26utm_medium%3Dweb%26utm_campaign%3Dweb-bottom-es-museos-obras-imprescindibles-museo-del-prado" rel="noopener"><img src="/assets/img/play-es.webp" alt="Get it on Google Play" width="180" height="54"></a><a class="btn btn-ghost" href="/es/">Volver al inicio</a></div>
 </div></div></section>
