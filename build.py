@@ -317,7 +317,7 @@ def build_home(lang, app):
     t = HOME[lang]
     fmt = {"min_os": app["min_os"]}
     examples = "".join(
-        f'<figure><img src="/assets/img/screen-{i}.webp" alt="{esc(t["shots_alt"][i - 1])}" width="645" height="1147" loading="lazy">'
+        f'<figure><img src="/assets/img/screen-{i}.webp" alt="{esc(t["shots_alt"][i - 1])}" width="645" height="1057" loading="lazy">'
         f'<figcaption><b>{esc(name)}</b>{esc(why)}</figcaption></figure>' for i, name, why in t["examples"])
     steps = "".join(f'<div class="card"><div class="num">{i}</div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>'
                     for i, (a, b) in enumerate(t["steps"], 1))
@@ -336,7 +336,7 @@ def build_home(lang, app):
 <p style="margin-top:14px"><a href="{museum_hub(lang)}" style="font-weight:600">{esc(t['museums_h2'])} →</a></p>
 {qr(t['qr'])}
 </div>
-<div class="media"><div class="phone"><img src="/assets/img/screen-1.webp" alt="{esc(t['hero_alt'])}" width="645" height="1147" fetchpriority="high"></div></div>
+<div class="media"><div class="phone"><img src="/assets/img/screen-1.webp" alt="{esc(t['hero_alt'])}" width="645" height="1057" fetchpriority="high"></div></div>
 </div></section>
 
 <section><div class="wrap">
@@ -390,7 +390,7 @@ def article(lang, *, path, title, desc, h1, intro, body_html, faq, alts, crumb, 
     shot_html = ""
     if shot:
         shot_html = (f'<div class="guide-shot"><img src="/assets/img/screen-{shot}.webp" alt="{esc(t["shots_alt"][shot - 1])}" '
-                     f'width="645" height="1147" loading="lazy"><div><p>{esc(t["shot_cta"])}</p>{badge(t, "web-shot-" + where)}</div></div>')
+                     f'width="645" height="1057" loading="lazy"><div><p>{esc(t["shot_cta"])}</p>{badge(t, "web-shot-" + where)}</div></div>')
     updated = f'<p style="font-size:.85rem;color:var(--muted);margin-top:10px">{t["updated"]}: {TODAY}</p>' if kind == "guide" else ""
     hero_html = f'<div class="wrap narrow" style="margin-top:18px">{art_img(hero, tr_(ART[hero]["t"], lang), lang, eager=True, cls="wide")}</div>' if hero else ""
     body = f"""{header(lang, alts)}

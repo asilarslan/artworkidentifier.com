@@ -303,6 +303,9 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 .mvcard em { font-style: normal; color: var(--brand); font-weight: 600; font-size: .9rem; }
 .examples img { object-position: top; }
 @media (max-width: 640px) { .work figure.art img { max-height: 340px; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; } .work figure.art { text-align: center; } }
+/* app screenshots are cropped below the status bar: show them as a clean card, not a phone bezel */
+.phone img { border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 30px 70px rgba(28,25,23,.18); }
+.shots img, .examples img, .guide-shot img { border-radius: 22px; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://artworkidentifier.com/de/museen/rijksmuseum-highlights/", "name": "Rijksmuseum"}]}</script>
 </head>

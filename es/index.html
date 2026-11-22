@@ -303,6 +303,9 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 .mvcard em { font-style: normal; color: var(--brand); font-weight: 600; font-size: .9rem; }
 .examples img { object-position: top; }
 @media (max-width: 640px) { .work figure.art img { max-height: 340px; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; } .work figure.art { text-align: center; } }
+/* app screenshots are cropped below the status bar: show them as a clean card, not a phone bezel */
+.phone img { border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 30px 70px rgba(28,25,23,.18); }
+.shots img, .examples img, .guide-shot img { border-radius: 22px; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Artwork Identifier", "operatingSystem": "iOS 17.5 or later", "applicationCategory": "EducationalApplication", "url": "https://artworkidentifier.com/es/", "downloadUrl": "https://apps.apple.com/app/id6642639717", "image": "https://artworkidentifier.com/assets/img/icon-512.png", "screenshot": ["https://artworkidentifier.com/assets/img/screen-1.webp", "https://artworkidentifier.com/assets/img/screen-2.webp", "https://artworkidentifier.com/assets/img/screen-3.webp"], "softwareVersion": "1.5", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Artwork Identifier", "operatingSystem": "Android", "applicationCategory": "EducationalApplication", "url": "https://artworkidentifier.com/es/", "downloadUrl": "https://play.google.com/store/apps/details?id=com.artworkidentifier", "image": "https://artworkidentifier.com/assets/img/icon-512.png", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Artwork Identifier", "url": "https://artworkidentifier.com/es/", "inLanguage": "es"}</script>
 </head>
@@ -326,7 +329,7 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 <p style="margin-top:14px"><a href="/es/museos/" style="font-weight:600">Obras imprescindibles, museo a museo →</a></p>
 <div class="qr"><img src="/assets/img/qr-app-store.svg" alt="QR code" width="84" height="84" loading="lazy"><span>Escanea con la cámara del móvil para descargar la app</span></div>
 </div>
-<div class="media"><div class="phone"><img src="/assets/img/screen-1.webp" alt="Artwork Identifier reconoce la Mona Lisa y cuenta su historia" width="645" height="1147" fetchpriority="high"></div></div>
+<div class="media"><div class="phone"><img src="/assets/img/screen-1.webp" alt="Artwork Identifier reconoce la Mona Lisa y cuenta su historia" width="645" height="1057" fetchpriority="high"></div></div>
 </div></section>
 
 <section><div class="wrap">
@@ -343,7 +346,7 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 
 <section><div class="wrap">
 <h2>Respuestas reales de la app</h2><p class="lead">Pantallas sin editar de Artwork Identifier.</p>
-<div class="examples"><figure><img src="/assets/img/screen-1.webp" alt="Mona Lisa reconocida con su historia" width="645" height="1147" loading="lazy"><figcaption><b>La Gioconda</b>Título, artista, fecha e historia del retrato más famoso del mundo.</figcaption></figure><figure><img src="/assets/img/screen-2.webp" alt="El dormitorio de Van Gogh reconocido" width="645" height="1147" loading="lazy"><figcaption><b>Van Gogh, El dormitorio</b>Cuál de las tres versiones y por qué lo pintó.</figcaption></figure><figure><img src="/assets/img/screen-3.webp" alt="Fontana di Trevi reconocida" width="645" height="1147" loading="lazy"><figcaption><b>Fontana di Trevi, Roma</b>También monumentos y esculturas, no solo cuadros.</figcaption></figure></div>
+<div class="examples"><figure><img src="/assets/img/screen-1.webp" alt="Mona Lisa reconocida con su historia" width="645" height="1057" loading="lazy"><figcaption><b>La Gioconda</b>Título, artista, fecha e historia del retrato más famoso del mundo.</figcaption></figure><figure><img src="/assets/img/screen-2.webp" alt="El dormitorio de Van Gogh reconocido" width="645" height="1057" loading="lazy"><figcaption><b>Van Gogh, El dormitorio</b>Cuál de las tres versiones y por qué lo pintó.</figcaption></figure><figure><img src="/assets/img/screen-3.webp" alt="Fontana di Trevi reconocida" width="645" height="1057" loading="lazy"><figcaption><b>Fontana di Trevi, Roma</b>También monumentos y esculturas, no solo cuadros.</figcaption></figure></div>
 </div></section>
 
 <section id="how" class="alt"><div class="wrap">
