@@ -306,6 +306,22 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 /* app screenshots are cropped below the status bar: show them as a clean card, not a phone bezel */
 .phone img { border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 30px 70px rgba(28,25,23,.18); }
 .shots img, .examples img, .guide-shot img { border-radius: 22px; }
+/* drawn iPhone frame around real app screenshots (16:9 screenshots → classic home-button model) */
+.device { position: relative; width: 100%; max-width: 280px; margin: 0 auto; background: linear-gradient(145deg, #1f1f1f, #0b0b0b); border-radius: 46px; padding: 64px 14px 72px; box-shadow: inset 0 0 0 2px #333, 0 30px 70px rgba(28,25,23,.28); }
+.device::before { content: ""; position: absolute; top: 30px; left: 50%; width: 56px; height: 6px; margin-left: -28px; border-radius: 6px; background: #2c2c2c; }
+.device::after { content: ""; position: absolute; bottom: 14px; left: 50%; width: 46px; height: 46px; margin-left: -23px; border-radius: 50%; box-shadow: inset 0 0 0 2.5px #333; }
+.device .screen { background: #fff; border-radius: 4px; overflow: hidden; }
+.device .sbar { height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font: 600 11px/1 -apple-system, BlinkMacSystemFont, sans-serif; color: #111; }
+.device .ic { display: flex; gap: 4px; align-items: center; fill: #111; color: #111; }
+.device .ic svg { transform: scale(.8); }
+.device img { display: block; width: 100%; height: auto; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+.device.small { max-width: 200px; border-radius: 34px; padding: 46px 10px 52px; }
+.device.small::before { top: 21px; width: 40px; height: 5px; margin-left: -20px; }
+.device.small::after { bottom: 10px; width: 33px; height: 33px; margin-left: -16.5px; }
+.device.small .sbar { height: 18px; font-size: 8px; padding: 0 7px; }
+.device.small .ic svg { transform: scale(.6); }
+.guide-shot .device { margin: 0; }
+@media (max-width: 600px) { .guide-shot .device { margin: 0 auto; } }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Artwork Identifier", "operatingSystem": "iOS 17.5 or later", "applicationCategory": "EducationalApplication", "url": "https://artworkidentifier.com/tr/", "downloadUrl": "https://apps.apple.com/app/id6642639717", "image": "https://artworkidentifier.com/assets/img/icon-512.png", "screenshot": ["https://artworkidentifier.com/assets/img/screen-1.webp", "https://artworkidentifier.com/assets/img/screen-2.webp", "https://artworkidentifier.com/assets/img/screen-3.webp"], "softwareVersion": "1.5", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Artwork Identifier", "operatingSystem": "Android", "applicationCategory": "EducationalApplication", "url": "https://artworkidentifier.com/tr/", "downloadUrl": "https://play.google.com/store/apps/details?id=com.artworkidentifier", "image": "https://artworkidentifier.com/assets/img/icon-512.png", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Artwork Identifier", "url": "https://artworkidentifier.com/tr/", "inLanguage": "tr"}</script>
 </head>
@@ -329,7 +345,7 @@ figure.art.wide img { max-height: 520px; object-fit: contain; background: #f5f2e
 <p style="margin-top:14px"><a href="/tr/muzeler/" style="font-weight:600">Müze müze görülmesi gereken eserler →</a></p>
 <div class="qr"><img src="/assets/img/qr-app-store.svg" alt="QR code" width="84" height="84" loading="lazy"><span>Uygulamayı indirmek için telefon kameranızla okutun</span></div>
 </div>
-<div class="media"><div class="phone"><img src="/assets/img/screen-1.webp" alt="Artwork Identifier Mona Lisa&#x27;yı tanıyıp hikâyesini anlatıyor" width="645" height="1057" fetchpriority="high"></div></div>
+<div class="media"><div class="device"><div class="screen"><div class="sbar"><span>9:41</span><span class="ic"><svg width="17" height="11" viewBox="0 0 17 11" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><rect x="22.5" y="4" width="1.5" height="4" rx=".75" opacity=".4"/></svg></span></div><img src="/assets/img/screen-1.webp" alt="Artwork Identifier Mona Lisa&#x27;yı tanıyıp hikâyesini anlatıyor" width="645" height="1057" fetchpriority="high"></div></div></div>
 </div></section>
 
 <section><div class="wrap">

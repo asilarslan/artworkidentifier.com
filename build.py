@@ -292,6 +292,23 @@ def app_ld(app, lang):
     }]
 
 
+STATUS_ICONS = ('<svg width="17" height="11" viewBox="0 0 17 11" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/>'
+                '<rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/>'
+                '<rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>'
+                '<svg width="25" height="12" viewBox="0 0 25 12" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3" '
+                'fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/>'
+                '<rect x="22.5" y="4" width="1.5" height="4" rx=".75" opacity=".4"/></svg>')
+
+
+def device(n, alt, eager=False, small=False):
+    """A real app screenshot (cropped below the status bar) inside a drawn iPhone frame.
+    The screenshots are 16:9 (iPhone 8 Plus size), so the frame is the classic home-button model."""
+    load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<div class="device{" small" if small else ""}"><div class="screen"><div class="sbar"><span>9:41</span>'
+            f'<span class="ic">{STATUS_ICONS}</span></div>'
+            f'<img src="/assets/img/screen-{n}.webp" alt="{esc(alt)}" width="645" height="1057" {load}></div></div>')
+
+
 def card(href, title, text, img=None):
     pic = f'<img src="/assets/art/{img}.webp" alt="" loading="lazy" decoding="async">' if img else ""
     return f'<a class="mcard" href="{href}">{pic}<b>{esc(title)}</b><span>{esc(text)}</span></a>'
@@ -336,7 +353,7 @@ def build_home(lang, app):
 <p style="margin-top:14px"><a href="{museum_hub(lang)}" style="font-weight:600">{esc(t['museums_h2'])} →</a></p>
 {qr(t['qr'])}
 </div>
-<div class="media"><div class="phone"><img src="/assets/img/screen-1.webp" alt="{esc(t['hero_alt'])}" width="645" height="1057" fetchpriority="high"></div></div>
+<div class="media">{device(1, t['hero_alt'], eager=True)}</div>
 </div></section>
 
 <section><div class="wrap">
@@ -389,8 +406,8 @@ def article(lang, *, path, title, desc, h1, intro, body_html, faq, alts, crumb, 
     inline = f'<div class="inline-cta"><p>{esc(t["inline_cta"])}</p>{badge(t, "web-inline-" + where)}</div>'
     shot_html = ""
     if shot:
-        shot_html = (f'<div class="guide-shot"><img src="/assets/img/screen-{shot}.webp" alt="{esc(t["shots_alt"][shot - 1])}" '
-                     f'width="645" height="1057" loading="lazy"><div><p>{esc(t["shot_cta"])}</p>{badge(t, "web-shot-" + where)}</div></div>')
+        shot_html = (f'<div class="guide-shot">{device(shot, t["shots_alt"][shot - 1], small=True)}'
+                     f'<div><p>{esc(t["shot_cta"])}</p>{badge(t, "web-shot-" + where)}</div></div>')
     updated = f'<p style="font-size:.85rem;color:var(--muted);margin-top:10px">{t["updated"]}: {TODAY}</p>' if kind == "guide" else ""
     hero_html = f'<div class="wrap narrow" style="margin-top:18px">{art_img(hero, tr_(ART[hero]["t"], lang), lang, eager=True, cls="wide")}</div>' if hero else ""
     body = f"""{header(lang, alts)}
