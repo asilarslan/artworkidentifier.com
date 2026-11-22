@@ -1,0 +1,554 @@
+{
+ "mona-lisa": {
+  "file": "Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg",
+  "license": "Public domain",
+  "author": "Leonardo da Vinci",
+  "page": "https://commons.wikimedia.org/wiki/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg",
+  "w": 900,
+  "h": 1341
+ },
+ "wedding-at-cana": {
+  "file": "Les Noces de Cana - Paolo Veronese - Musée du Louvre Peintures INV 142 ; MR 384.jpg",
+  "license": "Public domain",
+  "author": "Paolo Veronese",
+  "page": "https://commons.wikimedia.org/wiki/File:Les_Noces_de_Cana_-_Paolo_Veronese_-_Mus%C3%A9e_du_Louvre_Peintures_INV_142_;_MR_384.jpg",
+  "w": 900,
+  "h": 603
+ },
+ "winged-victory": {
+  "file": "Victoire_de_Samothrace_-_Musee_du_Louvre_-_20190812.jpg",
+  "license": "CC0",
+  "author": "Shonagon",
+  "page": "https://commons.wikimedia.org/wiki/File:Victoire_de_Samothrace_-_Musee_du_Louvre_-_20190812.jpg",
+  "w": 900,
+  "h": 1195
+ },
+ "venus-de-milo": {
+  "file": "Front_views_of_the_Venus_de_Milo.jpg",
+  "license": "CC BY-SA 4.0",
+  "author": "Livioandronico2013",
+  "page": "https://commons.wikimedia.org/wiki/File:Front_views_of_the_Venus_de_Milo.jpg",
+  "w": 900,
+  "h": 1693
+ },
+ "liberty-leading-the-people": {
+  "file": "La_Liberté_guidant_le_peuple_-_Eugène_Delacroix_-_Musée_du_Louvre_Peintures_RF_129_-_après_restauration_2024.jpg",
+  "license": "Public domain",
+  "author": "Eugène Delacroix",
+  "page": "https://commons.wikimedia.org/wiki/File:La_Libert%C3%A9_guidant_le_peuple_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_129_-_apr%C3%A8s_restauration_2024.jpg",
+  "w": 900,
+  "h": 720
+ },
+ "raft-of-the-medusa": {
+  "file": "JEAN_LOUIS_THÉODORE_GÉRICAULT_-_La_Balsa_de_la_Medusa_(Museo_del_Louvre,_1818-19).jpg",
+  "license": "Public domain",
+  "author": "Théodore Géricault",
+  "page": "https://commons.wikimedia.org/wiki/File:JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_(Museo_del_Louvre,_1818-19).jpg",
+  "w": 900,
+  "h": 614
+ },
+ "coronation-of-napoleon": {
+  "file": "Jacques-Louis_David_-_The_Coronation_of_Napoleon_(1805-1807).jpg",
+  "license": "Public domain",
+  "author": "Jacques-Louis David / Georges Rouget",
+  "page": "https://commons.wikimedia.org/wiki/File:Jacques-Louis_David_-_The_Coronation_of_Napoleon_(1805-1807).jpg",
+  "w": 900,
+  "h": 566
+ },
+ "the-lacemaker": {
+  "file": "Johannes_Vermeer_-_The_lacemaker_(c.1669-1671).jpg",
+  "license": "Public domain",
+  "author": "Johannes Vermeer",
+  "page": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_The_lacemaker_(c.1669-1671).jpg",
+  "w": 900,
+  "h": 1032
+ },
+ "grande-odalisque": {
+  "file": "La_grande_odalisque_-_Jean-Auguste_Dominique_Ingres_-_Musée_du_Louvre_Peintures_RF_1158.jpg",
+  "license": "Public domain",
+  "author": "Jean-Auguste-Dominique Ingres",
+  "page": "https://commons.wikimedia.org/wiki/File:La_grande_odalisque_-_Jean-Auguste_Dominique_Ingres_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1158.jpg",
+  "w": 900,
+  "h": 502
+ },
+ "oath-of-the-horatii": {
+  "file": "Le_Serment_des_Horaces_-_Jacques-Louis_David_-_Musée_du_Louvre_Peintures_INV_3692_;_MR_1432.jpg",
+  "license": "Public domain",
+  "author": "Jacques-Louis David",
+  "page": "https://commons.wikimedia.org/wiki/File:Le_Serment_des_Horaces_-_Jacques-Louis_David_-_Mus%C3%A9e_du_Louvre_Peintures_INV_3692_;_MR_1432.jpg",
+  "w": 900,
+  "h": 698
+ },
+ "moulin-de-la-galette": {
+  "file": "Renoir,_Pierre-Auguste_-_Dance_at_Le_Moulin_de_la_Galette,_1876.jpg",
+  "license": "Public domain",
+  "author": "Pierre-Auguste Renoir",
+  "page": "https://commons.wikimedia.org/wiki/File:Renoir,_Pierre-Auguste_-_Dance_at_Le_Moulin_de_la_Galette,_1876.jpg",
+  "w": 900,
+  "h": 669
+ },
+ "whistlers-mother": {
+  "file": "Whistlers_Mother_high_res.jpg",
+  "license": "Public domain",
+  "author": "James McNeill Whistler",
+  "page": "https://commons.wikimedia.org/wiki/File:Whistlers_Mother_high_res.jpg",
+  "w": 900,
+  "h": 801
+ },
+ "dejeuner-sur-lherbe": {
+  "file": "Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Édouard Manet",
+  "page": "https://commons.wikimedia.org/wiki/File:Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 699
+ },
+ "olympia": {
+  "file": "Edouard_Manet_-_Olympia_-_Google_Art_ProjectFXD.jpg",
+  "license": "Public domain",
+  "author": "Édouard Manet",
+  "page": "https://commons.wikimedia.org/wiki/File:Edouard_Manet_-_Olympia_-_Google_Art_ProjectFXD.jpg",
+  "w": 900,
+  "h": 609
+ },
+ "the-gleaners": {
+  "file": "Jean-François_Millet_-_Gleaners_-_Google_Art_Project_2.jpg",
+  "license": "Public domain",
+  "author": "Jean-François Millet",
+  "page": "https://commons.wikimedia.org/wiki/File:Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg",
+  "w": 900,
+  "h": 673
+ },
+ "church-at-auvers": {
+  "file": "Vincent_van_Gogh_-_The_Church_in_Auvers-sur-Oise,_View_from_the_Chevet_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Vincent van Gogh",
+  "page": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_The_Church_in_Auvers-sur-Oise,_View_from_the_Chevet_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 1162
+ },
+ "starry-night-over-the-rhone": {
+  "file": "Starry Night Over the Rhone.jpg",
+  "license": "Public domain",
+  "author": "Vincent van Gogh",
+  "page": "https://commons.wikimedia.org/wiki/File:Starry_Night_Over_the_Rhone.jpg",
+  "w": 900,
+  "h": 698
+ },
+ "floor-scrapers": {
+  "file": "Gustave_Caillebotte_-_The_Floor_Planers_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Gustave Caillebotte",
+  "page": "https://commons.wikimedia.org/wiki/File:Gustave_Caillebotte_-_The_Floor_Planers_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 632
+ },
+ "washington-crossing-the-delaware": {
+  "file": "Washington Crossing the Delaware by Emanuel Leutze, MMA-NYC, 1851.jpg",
+  "license": "Public domain",
+  "author": "Emanuel Leutze",
+  "page": "https://commons.wikimedia.org/wiki/File:Washington_Crossing_the_Delaware_by_Emanuel_Leutze,_MMA-NYC,_1851.jpg",
+  "w": 900,
+  "h": 577
+ },
+ "wheat-field-with-cypresses": {
+  "file": "Wheat-Field-with-Cypresses-(1889)-Vincent-van-Gogh-Met.jpg",
+  "license": "Public domain",
+  "author": "Vincent van Gogh",
+  "page": "https://commons.wikimedia.org/wiki/File:Wheat-Field-with-Cypresses-(1889)-Vincent-van-Gogh-Met.jpg",
+  "w": 900,
+  "h": 705
+ },
+ "the-harvesters": {
+  "file": "Pieter Bruegel the Elder- The Harvesters - Google Art Project.jpg",
+  "license": "Public domain",
+  "author": "Pieter Bruegel the Elder",
+  "page": "https://commons.wikimedia.org/wiki/File:Pieter_Bruegel_the_Elder-_The_Harvesters_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 656
+ },
+ "madame-x": {
+  "file": "Madame_X_(Madame_Pierre_Gautreau),_John_Singer_Sargent,_1884_(unfree_frame_crop).jpg",
+  "license": "Public domain",
+  "author": "John Singer Sargent (American, Florence 1856–1925 London) (1856 - 1925) – Artist Details on Google Art Project",
+  "page": "https://commons.wikimedia.org/wiki/File:Madame_X_(Madame_Pierre_Gautreau),_John_Singer_Sargent,_1884_(unfree_frame_crop).jpg",
+  "w": 900,
+  "h": 1748
+ },
+ "death-of-socrates": {
+  "file": "David_-_The_Death_of_Socrates.jpg",
+  "license": "Public domain",
+  "author": "Jacques-Louis David",
+  "page": "https://commons.wikimedia.org/wiki/File:David_-_The_Death_of_Socrates.jpg",
+  "w": 900,
+  "h": 591
+ },
+ "woman-with-water-pitcher": {
+  "file": "Jan_Vermeer_van_Delft_019.jpg",
+  "license": "Public domain",
+  "author": "Johannes Vermeer",
+  "page": "https://commons.wikimedia.org/wiki/File:Jan_Vermeer_van_Delft_019.jpg",
+  "w": 900,
+  "h": 1015
+ },
+ "aristotle-bust-of-homer": {
+  "file": "Rembrandt_-_Aristotle_with_a_Bust_of_Homer_-_WGA19232.jpg",
+  "license": "Public domain",
+  "author": "Rembrandt",
+  "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_-_Aristotle_with_a_Bust_of_Homer_-_WGA19232.jpg",
+  "w": 900,
+  "h": 945
+ },
+ "birth-of-venus": {
+  "file": "Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+  "license": "Public domain",
+  "author": "Sandro Botticelli",
+  "page": "https://commons.wikimedia.org/wiki/File:Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+  "w": 900,
+  "h": 565
+ },
+ "primavera": {
+  "file": "Botticelli-primavera.jpg",
+  "license": "Public domain",
+  "author": "Sandro Botticelli",
+  "page": "https://commons.wikimedia.org/wiki/File:Botticelli-primavera.jpg",
+  "w": 900,
+  "h": 591
+ },
+ "annunciation-leonardo": {
+  "file": "Annunciation_(Leonardo_c._1472–1476).jpg",
+  "license": "Public domain",
+  "author": "Leonardo da Vinci",
+  "page": "https://commons.wikimedia.org/wiki/File:Annunciation_(Leonardo_c._1472%E2%80%931476).jpg",
+  "w": 900,
+  "h": 413
+ },
+ "venus-of-urbino": {
+  "file": "Tiziano_-_Venere_di_Urbino_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Titian",
+  "page": "https://commons.wikimedia.org/wiki/File:Tiziano_-_Venere_di_Urbino_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 633
+ },
+ "doni-tondo": {
+  "file": "Tondo_Doni_2015.png",
+  "license": "Public domain",
+  "author": "Michelangelo",
+  "page": "https://commons.wikimedia.org/wiki/File:Tondo_Doni_2015.png",
+  "w": 900,
+  "h": 927
+ },
+ "medusa-caravaggio": {
+  "file": "Caravaggio_-_Medusa_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Caravaggio",
+  "page": "https://commons.wikimedia.org/wiki/File:Caravaggio_-_Medusa_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 922
+ },
+ "bacchus-caravaggio": {
+  "file": "Bacchus_by_Caravaggio_1.jpg",
+  "license": "Public domain",
+  "author": "Caravaggio",
+  "page": "https://commons.wikimedia.org/wiki/File:Bacchus_by_Caravaggio_1.jpg",
+  "w": 900,
+  "h": 1050
+ },
+ "night-watch": {
+  "file": "La_ronda_de_noche,_por_Rembrandt_van_Rijn.jpg",
+  "license": "Public domain",
+  "author": "Rembrandt",
+  "page": "https://commons.wikimedia.org/wiki/File:La_ronda_de_noche,_por_Rembrandt_van_Rijn.jpg",
+  "w": 900,
+  "h": 732
+ },
+ "the-milkmaid": {
+  "file": "Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.png",
+  "license": "Public domain",
+  "author": "Johannes Vermeer",
+  "page": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.png",
+  "w": 900,
+  "h": 1012
+ },
+ "jewish-bride": {
+  "file": "Rembrandt_Harmensz._van_Rijn_-_Portret_van_een_paar_als_oudtestamentische_figuren,_genaamd_'Het_Joodse_bruidje'_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Rembrandt",
+  "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_Harmensz._van_Rijn_-_Portret_van_een_paar_als_oudtestamentische_figuren,_genaamd_%27Het_Joodse_bruidje%27_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 656
+ },
+ "little-street": {
+  "file": "Johannes_Vermeer_-_Gezicht_op_huizen_in_Delft,_bekend_als_'Het_straatje'_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Johannes Vermeer",
+  "page": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_Gezicht_op_huizen_in_Delft,_bekend_als_%27Het_straatje%27_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 1115
+ },
+ "syndics": {
+  "file": "Rembrandt_-_De_Staalmeesters-_het_college_van_staalmeesters_(waardijns)_van_het_Amsterdamse_lakenbereidersgilde_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Rembrandt",
+  "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_-_De_Staalmeesters-_het_college_van_staalmeesters_(waardijns)_van_het_Amsterdamse_lakenbereidersgilde_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 608
+ },
+ "threatened-swan": {
+  "file": "De_bedreigde_zwaan_Rijksmuseum_SK-A-4.jpeg",
+  "license": "CC0",
+  "author": "Jan Asselijn",
+  "page": "https://commons.wikimedia.org/wiki/File:De_bedreigde_zwaan_Rijksmuseum_SK-A-4.jpeg",
+  "w": 900,
+  "h": 759
+ },
+ "las-meninas": {
+  "file": "Las_Meninas,_by_Diego_Velázquez,_from_Prado_in_Google_Earth.jpg",
+  "license": "Public domain",
+  "author": "Diego Velázquez",
+  "page": "https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Vel%C3%A1zquez,_from_Prado_in_Google_Earth.jpg",
+  "w": 900,
+  "h": 1036
+ },
+ "garden-of-earthly-delights": {
+  "file": "The_Garden_of_earthly_delights.jpg",
+  "license": "Public domain",
+  "author": "Hieronymus Bosch",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Garden_of_earthly_delights.jpg",
+  "w": 900,
+  "h": 512
+ },
+ "third-of-may-1808": {
+  "file": "El_Tres_de_Mayo,_by_Francisco_de_Goya,_from_Prado_thin_black_margin.jpg",
+  "license": "Public domain",
+  "author": "El_Tres_de_Mayo,_by_Francisco_de_Goya,_from_Prado_in_Google_Earth.jpg: Francisco de Goya\nderivative work: Papa Lima Whis",
+  "page": "https://commons.wikimedia.org/wiki/File:El_Tres_de_Mayo,_by_Francisco_de_Goya,_from_Prado_thin_black_margin.jpg",
+  "w": 900,
+  "h": 695
+ },
+ "saturn": {
+  "file": "Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg",
+  "license": "Public domain",
+  "author": "Francisco Goya",
+  "page": "https://commons.wikimedia.org/wiki/File:Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg",
+  "w": 900,
+  "h": 1653
+ },
+ "descent-from-the-cross": {
+  "file": "El_Descendimiento,_by_Rogier_van_der_Weyden,_from_Prado_in_Google_Earth.jpg",
+  "license": "Public domain",
+  "author": "Rogier van der Weyden",
+  "page": "https://commons.wikimedia.org/wiki/File:El_Descendimiento,_by_Rogier_van_der_Weyden,_from_Prado_in_Google_Earth.jpg",
+  "w": 900,
+  "h": 698
+ },
+ "nobleman-hand-on-chest": {
+  "file": "El_caballero_de_la_mano_en_el_pecho.jpg",
+  "license": "Public domain",
+  "author": "El Greco",
+  "page": "https://commons.wikimedia.org/wiki/File:El_caballero_de_la_mano_en_el_pecho.jpg",
+  "w": 900,
+  "h": 1141
+ },
+ "three-graces": {
+  "file": "The Three Graces, by Peter Paul Rubens, from Prado in Google Earth.jpg",
+  "license": "Public domain",
+  "author": "Peter Paul Rubens",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Three_Graces,_by_Peter_Paul_Rubens,_from_Prado_in_Google_Earth.jpg",
+  "w": 900,
+  "h": 1097
+ },
+ "arnolfini-portrait": {
+  "file": "The_Arnolfini_portrait_(1434).jpg",
+  "license": "Public domain",
+  "author": "Jan van Eyck",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Arnolfini_portrait_(1434).jpg",
+  "w": 900,
+  "h": 1231
+ },
+ "fighting-temeraire": {
+  "file": "The_Fighting_Temeraire,_JMW_Turner,_National_Gallery.jpg",
+  "license": "Public domain",
+  "author": "J. M. W. Turner",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Fighting_Temeraire,_JMW_Turner,_National_Gallery.jpg",
+  "w": 900,
+  "h": 669
+ },
+ "sunflowers": {
+  "file": "Vincent_Willem_van_Gogh_127.jpg",
+  "license": "Public domain",
+  "author": "Vincent van Gogh",
+  "page": "https://commons.wikimedia.org/wiki/File:Vincent_Willem_van_Gogh_127.jpg",
+  "w": 900,
+  "h": 1136
+ },
+ "hay-wain": {
+  "file": "John_Constable_-_The_Hay_Wain_(1821).jpg",
+  "license": "Public domain",
+  "author": "John Constable",
+  "page": "https://commons.wikimedia.org/wiki/File:John_Constable_-_The_Hay_Wain_(1821).jpg",
+  "w": 900,
+  "h": 621
+ },
+ "bathers-at-asnieres": {
+  "file": "Baigneurs_a_Asnieres.jpg",
+  "license": "Public domain",
+  "author": "Georges Seurat",
+  "page": "https://commons.wikimedia.org/wiki/File:Baigneurs_a_Asnieres.jpg",
+  "w": 900,
+  "h": 597
+ },
+ "the-ambassadors": {
+  "file": "Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Hans Holbein the Younger",
+  "page": "https://commons.wikimedia.org/wiki/File:Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 887
+ },
+ "whistlejacket": {
+  "file": "Whistlejacket_by_George_Stubbs_edit.jpg",
+  "license": "Public domain",
+  "author": "George Stubbs",
+  "page": "https://commons.wikimedia.org/wiki/File:Whistlejacket_by_George_Stubbs_edit.jpg",
+  "w": 900,
+  "h": 1079
+ },
+ "creation-of-adam": {
+  "file": "Michelangelo_-_Creation_of_Adam_(cropped).jpg",
+  "license": "Public domain",
+  "author": "Michelangelo",
+  "page": "https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg",
+  "w": 900,
+  "h": 408
+ },
+ "last-judgment": {
+  "file": "Last_Judgement_(Michelangelo).jpg",
+  "license": "Public domain",
+  "author": "Michelangelo",
+  "page": "https://commons.wikimedia.org/wiki/File:Last_Judgement_(Michelangelo).jpg",
+  "w": 900,
+  "h": 991
+ },
+ "school-of-athens": {
+  "file": "\"The_School_of_Athens\"_by_Raffaello_Sanzio_da_Urbino.jpg",
+  "license": "Public domain",
+  "author": "Raphael",
+  "page": "https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+  "w": 900,
+  "h": 698
+ },
+ "transfiguration": {
+  "file": "Transfiguration_Raphael.jpg",
+  "license": "Public domain",
+  "author": "Raphael",
+  "page": "https://commons.wikimedia.org/wiki/File:Transfiguration_Raphael.jpg",
+  "w": 900,
+  "h": 1356
+ },
+ "laocoon": {
+  "file": "Laocoön_and_his_sons_group.jpg",
+  "license": "CC0",
+  "author": "Wilfredor",
+  "page": "https://commons.wikimedia.org/wiki/File:Laoco%C3%B6n_and_his_sons_group.jpg",
+  "w": 900,
+  "h": 978
+ },
+ "the-swing": {
+  "file": "The_Swing_(P430).jpg",
+  "license": "Public domain",
+  "author": "Jean-Honoré Fragonard",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Swing_(P430).jpg",
+  "w": 900,
+  "h": 1162
+ },
+ "wanderer-above-the-sea-of-fog": {
+  "file": "Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg",
+  "license": "Public domain",
+  "author": "Caspar David Friedrich",
+  "page": "https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg",
+  "w": 900,
+  "h": 1154
+ },
+ "impression-sunrise": {
+  "file": "Monet_-_Impression,_Sunrise.jpg",
+  "license": "Public domain",
+  "author": "Claude Monet",
+  "page": "https://commons.wikimedia.org/wiki/File:Monet_-_Impression,_Sunrise.jpg",
+  "w": 900,
+  "h": 698
+ },
+ "starry-night": {
+  "file": "Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Vincent van Gogh",
+  "page": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 713
+ },
+ "la-grande-jatte": {
+  "file": "A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg",
+  "license": "Public domain",
+  "author": "Georges Seurat",
+  "page": "https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg",
+  "w": 900,
+  "h": 599
+ },
+ "the-kiss": {
+  "file": "The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg",
+  "license": "Public domain",
+  "author": "Gustav Klimt",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg",
+  "w": 900,
+  "h": 903
+ },
+ "the-scream": {
+  "file": "Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg",
+  "license": "Public domain",
+  "author": "Edvard Munch",
+  "page": "https://commons.wikimedia.org/wiki/File:Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg",
+  "w": 900,
+  "h": 1117
+ },
+ "portrait-of-picasso-gris": {
+  "file": "Juan Gris - Portrait of Pablo Picasso - Google Art Project.jpg",
+  "license": "Public domain",
+  "author": "Juan Gris",
+  "page": "https://commons.wikimedia.org/wiki/File:Juan_Gris_-_Portrait_of_Pablo_Picasso_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 1145
+ },
+ "composition-vii": {
+  "file": "Composition_VII_-_Wassily_Kandinsky,_GAC.jpg",
+  "license": "Public domain",
+  "author": "Wassily Kandinsky",
+  "page": "https://commons.wikimedia.org/wiki/File:Composition_VII_-_Wassily_Kandinsky,_GAC.jpg",
+  "w": 900,
+  "h": 598
+ },
+ "great-wave": {
+  "file": "Tsunami_by_hokusai_19th_century.jpg",
+  "license": "Public domain",
+  "author": "Katsushika Hokusai",
+  "page": "https://commons.wikimedia.org/wiki/File:Tsunami_by_hokusai_19th_century.jpg",
+  "w": 900,
+  "h": 605
+ },
+ "girl-with-a-pearl-earring": {
+  "file": "1665_Girl_with_a_Pearl_Earring.jpg",
+  "license": "Public domain",
+  "author": "Johannes Vermeer",
+  "page": "https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg",
+  "w": 900,
+  "h": 1066
+ },
+ "tortoise-trainer": {
+  "file": "Osman_Hamdi_Bey_-_The_Tortoise_Trainer_-_Google_Art_Project.jpg",
+  "license": "Public domain",
+  "author": "Osman Hamdi Bey",
+  "page": "https://commons.wikimedia.org/wiki/File:Osman_Hamdi_Bey_-_The_Tortoise_Trainer_-_Google_Art_Project.jpg",
+  "w": 900,
+  "h": 1684
+ }
+}
